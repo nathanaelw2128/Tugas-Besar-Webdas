@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vatican City — The Heart of History and Faith</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════ NAVBAR ══════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#" class="navbar__logo">
+        <span class="navbar__logo-main">Vatican</span>
+        <span class="navbar__logo-sub">City</span>
+      </a>
+
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="#facts">Facts</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#culture">Culture</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero__bg">
+      <!-- Aerial Vatican aerial photo via Unsplash -->
+      <img src="assets/Hero_IMG.jpg" alt="Vatican City aerial view" class="hero__photo" />
+      <div class="hero__overlay"></div>
+    </div>
+
+    <!-- centre inset image -->
+    <div class="hero__inset">
+      <img src="assets/Interior of Vatican dome.png" alt="St Peter's Basilica interior dome" />
+      <span class="hero__inset-caption">Fig. 1 — Pantheon Vaticanum</span>
+    </div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">✦ Sovereign City-State · Est. MCMXXIX ✦</p>
+      <h1 class="hero__title">
+        <span class="hero__title-top">Vatican</span>
+        <span class="hero__title-bottom">City</span>
+      </h1>
+      <p class="hero__subtitle">The Heart of History and Faith</p>
+      <p class="hero__anno">Anno Domini</p>
+      <a href="#facts" class="hero__cta">Explore Now</a>
+    </div>
+
+    <div class="hero__scroll-hint">SCROLL</div>
+  </section>
+
+  <!-- ═══════════════════════════════════ QUICK FACTS ═══════════════════════════ -->
+  <section class="facts" id="facts">
+    <div class="facts__inner">
+
+      <div class="facts__header">
+        <div class="facts__eyebrow-row">
+          <span class="facts__line"></span>
+          <span class="facts__eyebrow">Vol. I — Facts &amp; Figures</span>
+        </div>
+        <h2 class="facts__heading">
+          Quick<br />
+          <span class="facts__heading-red">Facts</span>
+        </h2>
+      </div>
+
+      <div class="facts__blurb">
+        <p class="facts__quote">
+          An enclave within Rome, Vatican City stands as the spiritual and
+          administrative center of the Roman Catholic Church — a living monument
+          to two millennia of civilization.
+        </p>
+        <p class="facts__est">Est. 1929 · Lateran Treaty</p>
+      </div>
+
+    </div>
+
+    <!-- Arch cards -->
+    <div class="cards">
+
+      <article class="card" style="--accent:#c0392b;">
+        <div class="card__arch">
+          <img src="assets/Placeholder_1.jpg" alt="Vatican interior" />
+          <div class="card__img-overlay"></div>
+          <div class="card__stat">~0.49<span class="card__unit">km²</span></div>
+        </div>
+        <div class="card__body">
+          <p class="card__desc">
+            The world's smallest internationally recognized independent state —
+            a sovereign enclave within the city of Rome.
+          </p>
+        </div>
+        <div class="card__foot">
+          <span class="card__label">Area</span>
+          <span class="card__diamond">◇</span>
+        </div>
+      </article>
+
+      <article class="card" style="--accent:#b8860b;">
+        <div class="card__arch">
+          <img src="assets/Placeholder_2.jpg" alt="Vatican dome interior" />
+          <div class="card__img-overlay"></div>
+          <div class="card__stat">~800<span class="card__unit">Citizens</span></div>
+        </div>
+        <div class="card__body">
+          <p class="card__desc">
+            A unique community of clergy, Swiss Guards, and Vatican staff —
+            constituting the planet's smallest national population.
+          </p>
+        </div>
+        <div class="card__foot">
+          <span class="card__label">Population</span>
+          <span class="card__diamond">◇</span>
+        </div>
+      </article>
+
+      <article class="card" style="--accent:#2980b9;">
+        <div class="card__arch">
+          <img src="assets/Placeholder_3.jpg" alt="Vatican sky" />
+          <div class="card__img-overlay"></div>
+          <div class="card__stat card__stat--script">Latin<span class="card__unit">&amp; Italian</span></div>
+        </div>
+        <div class="card__body">
+          <p class="card__desc">
+            Latin is the official tongue of law and sacred doctrine; Italian
+            governs everyday civil and administrative affairs.
+          </p>
+        </div>
+        <div class="card__foot">
+          <span class="card__label">Language</span>
+          <span class="card__diamond">◇</span>
+        </div>
+      </article>
+
+      <article class="card" style="--accent:#7b68ee;">
+        <div class="card__arch">
+          <img src="assets/Placeholder_4.jpg" alt="Vatican art ceiling" />
+          <div class="card__img-overlay"></div>
+          <div class="card__stat card__stat--script card__stat--purple">Euro<span class="card__unit">€</span></div>
+        </div>
+        <div class="card__body">
+          <p class="card__desc">
+            Vatican mints its own euro coins bearing papal imagery — among the
+            rarest and most prized numismatic collectibles.
+          </p>
+        </div>
+        <div class="card__foot">
+          <span class="card__label">Currency</span>
+          <span class="card__diamond">◇</span>
+        </div>
+      </article>
+
+    </div><!-- /cards -->
+
+    <p class="facts__source">Source: Holy See · Vatican Information Service · MMXXVI</p>
+  </section>
+
+  <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════ -->
+  <footer class="footer">
+
+    <div class="footer__top">
+      <div class="footer__brand">
+        <p class="footer__brand-eyebrow">✦ Sovereign City-State ✦</p>
+        <h3 class="footer__brand-name">Vatican<br /><span>City</span></h3>
+        <p class="footer__brand-tagline">The Heart of History and Faith</p>
+      </div>
+
+      <nav class="footer__nav">
+        <div class="footer__nav-col">
+          <h4 class="footer__nav-title">Explore</h4>
+          <ul>
+            <li><a href="#">History</a></li>
+            <li><a href="#">Architecture</a></li>
+            <li><a href="#">Art &amp; Culture</a></li>
+            <li><a href="#">Papal Archives</a></li>
+          </ul>
+        </div>
+        <div class="footer__nav-col">
+          <h4 class="footer__nav-title">Discover</h4>
+          <ul>
+            <li><a href="#">St. Peter's Basilica</a></li>
+            <li><a href="#">Sistine Chapel</a></li>
+            <li><a href="#">Vatican Museums</a></li>
+            <li><a href="#">Swiss Guard</a></li>
+          </ul>
+        </div>
+        <div class="footer__nav-col">
+          <h4 class="footer__nav-title">Visit</h4>
+          <ul>
+            <li><a href="#">Plan Your Trip</a></li>
+            <li><a href="#">Opening Hours</a></li>
+            <li><a href="#">Dress Code</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="footer__newsletter">
+        <h4 class="footer__nav-title">Stay Informed</h4>
+        <p>Receive dispatches from the Holy See directly to your inbox.</p>
+        <div class="footer__form">
+          <input type="email" placeholder="Your email address" />
+          <button type="button">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__divider"></div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">© MMXXVI Vatican City Cultural Archive. All rights reserved.</p>
+      <p class="footer__source">Source: Holy See · Vatican Information Service</p>
+      <div class="footer__links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
