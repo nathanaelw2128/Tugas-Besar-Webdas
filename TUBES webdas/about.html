@@ -2,141 +2,205 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About — Vatican City</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Vatican City</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 
-    <style>
-        /* CSS TAMBAHAN KHUSUS TEMPLATE (Bisa lu pindahin ke style.css nanti) */
-        .page-header {
-            padding: 150px 2rem 80px;
-            background: var(--dark);
-            text-align: center;
-            color: var(--white);
-        }
+  <style>
+    /* CSS TAMBAHAN KHUSUS TEMPLATE (Bisa lu pindahin ke style.css nanti) */
+    .page-header {
+      padding: 150px 2rem 80px;
+      background: var(--dark);
+      text-align: center;
+      color: var(--white);
+    }
 
-        .page-header__title {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 8vw, 6rem);
-            color: var(--red);
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-        }
+    .page-header__title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
 
-        .page-header__subtitle {
-            font-family: var(--font-script);
-            font-style: italic;
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 10px;
-        }
+    .page-header__subtitle {
+      font-family: var(--font-script);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 10px;
+    }
 
-        .page-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            min-height: 50vh;
-            /* Biar footer nggak naik kalau konten dikit */
-        }
-    </style>
+    .page-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      min-height: 50vh;
+      /* Biar footer nggak naik kalau konten dikit */
+    }
+  </style>
 </head>
 
 <body>
 
-    <nav class="navbar" id="navbar">
-        <div class="navbar__inner">
-            <a href="index.html" class="navbar__logo">
-                <span class="navbar__logo-main">Vatican</span>
-                <span class="navbar__logo-sub">City</span>
-            </a>
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <span class="navbar__logo-main">Vatican</span>
+        <span class="navbar__logo-sub">City</span>
+      </a>
 
-                        <ul class="navbar__links" id="navLinks">
-                <li><a href="about.html">About</a></li>
-                <li><a href="landmarks.html">Landmarks</a></li>
-                <li><a href="history.html">History</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="about.html">About</a></li>
+        <li><a href="landmarks.html">Landmarks</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
 
-            <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <h1 class="page-header__title">About Vatican City</h1>
+    <p class="page-header__subtitle">The story of the world's smallest state.</p>
+  </header>
+
+  <main class="page-content">
+
+    <p>Ini adalah area konten. Silakan hapus teks ini dan ganti dengan elemen HTML sesuai kebutuhan halaman.</p>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer__top">
+
+      <!-- Brand -->
+      <div class="footer__brand">
+        <p class="footer__brand-eyebrow">✦ Sovereign City-State ✦</p>
+        <h3 class="footer__brand-name">Vatican<br /><span>City</span></h3>
+        <p class="footer__brand-tagline">The Heart of History and Faith</p>
+      </div>
+
+      <!-- Nav -->
+      <nav class="footer__nav">
+        <div class="footer__nav-col">
+          <h4 class="footer__nav-title">Pages</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="landmarks.html">Landmarks</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
         </div>
-    </nav>
-
-    <header class="page-header">
-        <h1 class="page-header__title">About Vatican City</h1>
-        <p class="page-header__subtitle">The story of the world's smallest state.</p>
-    </header>
-
-    <main class="page-content">
-
-        <p>Ini adalah area konten. Silakan hapus teks ini dan ganti dengan elemen HTML sesuai kebutuhan halaman.</p>
-
-    </main>
-
-    <footer class="footer">
-        <div class="footer__top">
-            <div class="footer__brand">
-                <p class="footer__brand-eyebrow">✦ Sovereign City-State ✦</p>
-                <h3 class="footer__brand-name">Vatican<br /><span>City</span></h3>
-                <p class="footer__brand-tagline">The Heart of History and Faith</p>
-            </div>
-
-            <nav class="footer__nav">
-                <div class="footer__nav-col">
-                    <h4 class="footer__nav-title">Explore</h4>
-                    <ul>
-                        <li><a href="history.html">History</a></li>
-                        <li><a href="culture.html">Art &amp; Culture</a></li>
-                    </ul>
-                </div>
-                <div class="footer__nav-col">
-                    <h4 class="footer__nav-title">Discover</h4>
-                    <ul>
-                        <li><a href="#">St. Peter's Basilica</a></li>
-                        <li><a href="#">Sistine Chapel</a></li>
-                    </ul>
-                </div>
-                <div class="footer__nav-col">
-                    <h4 class="footer__nav-title">Visit</h4>
-                    <ul>
-                        <li><a href="visit.html">Plan Your Trip</a></li>
-                        <li><a href="#">Opening Hours</a></li>
-                    </ul>
-                </div>
-            </nav>
-
-            <div class="footer__newsletter">
-                <h4 class="footer__nav-title">Stay Informed</h4>
-                <p>Receive dispatches from the Holy See directly to your inbox.</p>
-                <div class="footer__form">
-                    <input type="email" placeholder="Your email address" />
-                    <button type="button">Subscribe</button>
-                </div>
-            </div>
+        <div class="footer__nav-col">
+          <h4 class="footer__nav-title">Discover</h4>
+          <ul>
+            <li><a href="landmarks.html">St. Peter's Basilica</a></li>
+            <li><a href="landmarks.html">Sistine Chapel</a></li>
+            <li><a href="landmarks.html">Vatican Museums</a></li>
+            <li><a href="landmarks.html">Swiss Guard</a></li>
+          </ul>
         </div>
-
-        <div class="footer__divider"></div>
-
-        <div class="footer__bottom">
-            <p class="footer__copy">© MMXXVI Vatican City Cultural Archive. All rights reserved.</p>
-            <p class="footer__source">Source: Holy See · Vatican Information Service</p>
-            <div class="footer__links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Use</a>
-            </div>
+        <div class="footer__nav-col">
+          <h4 class="footer__nav-title">Info</h4>
+          <ul>
+            <li><a href="about.html">About Vatican City</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
         </div>
-    </footer>
+      </nav>
 
-    <script src="script.js"></script>
+      <!-- Visitor Tips -->
+      <div>
+        <h4 class="footer__tips-title">Visit Tips</h4>
+        <ul class="footer__tips-list">
+          <li class="footer__tip">
+            <span class="footer__tip-num">01</span>
+            <div class="footer__tip-body">
+              <strong>Dress Code</strong>
+              <span>Cover shoulders &amp; knees. No sleeveless tops or shorts inside.</span>
+            </div>
+          </li>
+          <li class="footer__tip">
+            <span class="footer__tip-num">02</span>
+            <div class="footer__tip-body">
+              <strong>Opening Hours</strong>
+              <span>Basilica: daily 07:00–19:00. Museums: Mon–Sat 09:00–18:00.</span>
+            </div>
+          </li>
+          <li class="footer__tip">
+            <span class="footer__tip-num">03</span>
+            <div class="footer__tip-body">
+              <strong>Book in Advance</strong>
+              <span>Buy tickets online to skip 2–3 hour walk-in queues.</span>
+            </div>
+          </li>
+          <li class="footer__tip">
+            <span class="footer__tip-num">04</span>
+            <div class="footer__tip-body">
+              <strong>Silence &amp; Respect</strong>
+              <span>No flash photography. Keep voices low inside the Chapel.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Credits -->
+      <div>
+        <h4 class="footer__credits-title">Developer Credits</h4>
+        <div class="footer__team">
+          <div class="footer__member">
+            <div class="footer__member-avatar">DN</div>
+            <div>
+              <span class="footer__member-name">Darren Nicholas Heng</span>
+              <span class="footer__member-id">NRP · 2572019</span>
+            </div>
+          </div>
+          <div class="footer__member">
+            <div class="footer__member-avatar">DA</div>
+            <div>
+              <span class="footer__member-name">Daniel Arya Kristantara</span>
+              <span class="footer__member-id">NRP · 2572023</span>
+            </div>
+          </div>
+          <div class="footer__member">
+            <div class="footer__member-avatar">NW</div>
+            <div>
+              <span class="footer__member-name">Nathanael Wijaya</span>
+              <span class="footer__member-id">NRP · 2572028</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__divider"></div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 Kelompok Vatikan — Tugas Besar Web Dasar. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
