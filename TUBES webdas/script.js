@@ -11,22 +11,66 @@ window.addEventListener('scroll', () => {
 });
 
 // ── Mobile hamburger ───────────────────────────────
+// Fix: backdrop-filter on .navbar--scrolled creates a stacking context that
+// traps z-index inside it — including the hamburger button. So even z-index:99999
+// on the hamburger still renders *under* the overlay because they're in different
+// stacking contexts. Solution: put the close button INSIDE the overlay itself,
+// so it's guaranteed to be in the same stacking context and always on top.
+
 const hamburger = document.getElementById('hamburger');
 const navLinks  = document.getElementById('navLinks');
 
-hamburger.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('navbar__links--open');
-  hamburger.classList.toggle('navbar__hamburger--open', open);
+// Build body-level overlay (avoids backdrop-filter stacking context trap)
+const mobileOverlay = document.createElement('div');
+mobileOverlay.id = 'mobileNav';
+mobileOverlay.setAttribute('aria-hidden', 'true');
+
+// Close button lives INSIDE the overlay — not subject to navbar stacking context
+const closeBtn = document.createElement('button');
+closeBtn.className = 'mobile-nav__close';
+closeBtn.setAttribute('aria-label', 'Close menu');
+closeBtn.innerHTML = `
+  <span></span>
+  <span></span>
+`;
+
+// Clone links from original nav
+const linksList = document.createElement('ul');
+linksList.innerHTML = navLinks.innerHTML;
+
+mobileOverlay.appendChild(closeBtn);
+mobileOverlay.appendChild(linksList);
+document.body.appendChild(mobileOverlay);
+
+function openMenu() {
+  mobileOverlay.classList.add('mobile-nav--open');
+  mobileOverlay.setAttribute('aria-hidden', 'false');
+  hamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  mobileOverlay.classList.remove('mobile-nav--open');
+  mobileOverlay.setAttribute('aria-hidden', 'true');
+  hamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+// Hamburger opens, close button closes
+hamburger.addEventListener('click', openMenu);
+closeBtn.addEventListener('click', closeMenu);
+
+// Close on link click
+mobileOverlay.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', closeMenu);
 });
 
-// close menu on link click
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    navLinks.classList.remove('navbar__links--open');
-    hamburger.classList.remove('navbar__hamburger--open');
-  });
+// Close on ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMenu();
 });
 
+// ── Scroll animation ──────────────────────────────
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
