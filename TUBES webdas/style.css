@@ -6,6 +6,7 @@
   padding: 0;
 }
 
+/* Warna & Font utama yang dipakai di seluruh halaman */
 :root {
   --cream: #f0ebe0;
   --cream-dk: #e5ddd0;
@@ -32,6 +33,7 @@ body {
 }
 
 
+/* ── Navbar ── */
 .navbar {
   position: fixed;
   top: 0;
@@ -39,13 +41,12 @@ body {
   right: 0;
   z-index: 100;
   padding: 1.4rem 2rem;
-  transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s;
+  transition: background 0.4s ease, padding 0.4s ease;
 }
 
+/* Navbar berubah saat user scroll ke bawah */
 .navbar--scrolled {
-  background: rgba(10, 8, 5, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(10, 8, 5, 0.92);
   padding: 0.9rem 2rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -105,6 +106,7 @@ body {
   transition: color 0.25s;
 }
 
+/* Garis merah muncul dari kiri saat link di-hover */
 .navbar__links a::after {
   content: '';
   position: absolute;
@@ -124,6 +126,7 @@ body {
   width: 100%;
 }
 
+/* Tombol hamburger — hanya muncul di layar kecil */
 .navbar__hamburger {
   display: none;
   flex-direction: column;
@@ -142,6 +145,7 @@ body {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+/* Animasi hamburger berubah jadi tanda X */
 .navbar__hamburger--open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -154,10 +158,14 @@ body {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* Menu mobile fullscreen */
 #mobileNav {
   display: none;
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 9999;
   background: rgba(10, 8, 5, 0.97);
   flex-direction: column;
@@ -200,6 +208,7 @@ body {
   color: var(--white);
 }
 
+/* Tombol X untuk tutup menu mobile */
 .mobile-nav__close {
   position: absolute;
   top: 1.4rem;
@@ -237,21 +246,22 @@ body {
   background: var(--red);
 }
 
+/* Di layar kecil: tampilkan hamburger, sembunyikan link biasa */
 @media (max-width: 700px) {
   .navbar__hamburger {
     display: flex;
   }
 
-  /* Hide the original <ul> on mobile — overlay handles it */
   .navbar__links {
     display: none !important;
   }
 }
 
 
+/* ── Hero Section ── */
 .hero {
   position: relative;
-  height: 100svh;
+  height: 100vh;
   min-height: 700px;
   display: flex;
   flex-direction: column;
@@ -264,7 +274,10 @@ body {
 
 .hero__bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 0;
 }
 
@@ -276,17 +289,19 @@ body {
   filter: sepia(20%) brightness(0.55) contrast(1.1);
 }
 
+/* Lapisan gelap di atas foto hero */
 .hero__overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: linear-gradient(to bottom,
-      rgba(10, 8, 5, 0.35) 0%,
-      rgba(10, 8, 5, 0.1) 40%,
-      rgba(10, 8, 5, 0.4) 80%,
-      rgba(10, 8, 5, 0.9) 100%);
+      rgba(10, 8, 5, 0.3) 0%,
+      rgba(10, 8, 5, 0.8) 100%);
 }
 
-/* Centre inset image */
+/* Foto kecil di tengah hero */
 .hero__inset {
   position: absolute;
   top: 50%;
@@ -300,7 +315,7 @@ body {
 }
 
 .hero__inset img {
-  width: clamp(100px, 13vw, 200px);
+  width: 150px;
   aspect-ratio: 3/4;
   object-fit: cover;
   border-radius: 4px;
@@ -315,7 +330,7 @@ body {
   text-transform: uppercase;
 }
 
-/* Content */
+/* Teks utama di hero */
 .hero__content {
   position: relative;
   z-index: 3;
@@ -329,7 +344,7 @@ body {
 
 .hero__eyebrow {
   font-family: var(--font-mono);
-  font-size: clamp(0.45rem, 1vw, 0.65rem);
+  font-size: 0.6rem;
   letter-spacing: 0.2em;
   color: rgba(255, 255, 255, 0.55);
   text-transform: uppercase;
@@ -348,7 +363,7 @@ body {
 }
 
 .hero__title-top {
-  font-size: clamp(3.5rem, 13vw, 10rem);
+  font-size: 7rem;
   letter-spacing: -0.01em;
   position: relative;
   z-index: 5;
@@ -356,19 +371,18 @@ body {
 }
 
 .hero__title-bottom {
-  font-size: clamp(3.5rem, 13vw, 10rem);
+  font-size: 7rem;
   letter-spacing: -0.01em;
   position: relative;
   z-index: 1;
-  /* gap to leave room for inset image in between */
-  margin-top: clamp(6rem, 16vw, 13rem);
+  margin-top: 10rem;
   animation: fadeUp 0.9s 0.15s ease both;
 }
 
 .hero__subtitle {
   font-family: var(--font-script);
   font-style: italic;
-  font-size: clamp(0.95rem, 2.2vw, 1.6rem);
+  font-size: 1.2rem;
   color: var(--white);
   margin-top: 0.6rem;
   animation: fadeIn 1s 0.4s ease both;
@@ -418,6 +432,8 @@ body {
   animation: pulse 2s infinite;
 }
 
+
+/* ── Facts Section ── */
 .facts {
   background: var(--cream);
   padding: 5rem 0 3rem;
@@ -458,7 +474,7 @@ body {
 
 .facts__heading {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 9vw, 7rem);
+  font-size: 5.5rem;
   line-height: 0.92;
   text-transform: uppercase;
   color: var(--dark);
@@ -480,7 +496,7 @@ body {
 .facts__quote {
   font-family: var(--font-script);
   font-style: italic;
-  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  font-size: 1rem;
   line-height: 1.7;
   color: #444;
   margin-bottom: 1rem;
@@ -494,6 +510,8 @@ body {
   color: var(--gray);
 }
 
+
+/* ── Cards ── */
 .cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -541,7 +559,10 @@ body {
 
 .card__img-overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: linear-gradient(to bottom,
       transparent 35%,
       rgba(0, 0, 0, 0.6) 100%);
@@ -553,7 +574,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-size: 2.8rem;
   color: var(--accent, #c0392b);
   text-align: center;
   line-height: 1.1;
@@ -564,7 +585,7 @@ body {
 .card__stat--script {
   font-family: var(--font-script);
   font-style: italic;
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: 2.5rem;
 }
 
 .card__stat--purple {
@@ -625,6 +646,8 @@ body {
   padding-bottom: 1rem;
 }
 
+
+/* ── Footer ── */
 .footer {
   background: var(--dark);
   color: rgba(255, 255, 255, 0.7);
@@ -653,7 +676,7 @@ body {
 
 .footer__brand-name {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-size: 3.5rem;
   line-height: 0.9;
   color: var(--white);
   text-transform: uppercase;
@@ -672,7 +695,6 @@ body {
   line-height: 1.5;
 }
 
-/* Nav columns */
 .footer__nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -707,7 +729,6 @@ body {
   color: var(--white);
 }
 
-/* Newsletter */
 .footer__newsletter p {
   font-size: 0.83rem;
   line-height: 1.6;
@@ -803,6 +824,7 @@ body {
 }
 
 
+/* ── Keyframe Animations ── */
 @keyframes fadeDown {
   from {
     opacity: 0;
@@ -838,9 +860,7 @@ body {
 }
 
 @keyframes pulse {
-
-  0%,
-  100% {
+  0%, 100% {
     opacity: 0.35;
   }
 
@@ -849,6 +869,21 @@ body {
   }
 }
 
+
+/* ── Responsive — Tablet ── */
+@media (max-width: 1100px) {
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer__newsletter {
+    grid-column: 1 / -1;
+  }
+}
 
 @media (max-width: 900px) {
   .cards {
@@ -880,6 +915,7 @@ body {
   }
 }
 
+/* ── Responsive — Mobile ── */
 @media (max-width: 600px) {
   .cards {
     grid-template-columns: 1fr;
@@ -887,7 +923,7 @@ body {
   }
 
   .hero {
-    min-height: 100svh;
+    min-height: 100vh;
     padding-top: 70px;
     padding-bottom: 3.5rem;
     justify-content: flex-end;
@@ -897,8 +933,13 @@ body {
     width: 38vw;
   }
 
+  .hero__title-top,
   .hero__title-bottom {
-    margin-top: clamp(4.5rem, 12vw, 9rem);
+    font-size: 4rem;
+  }
+
+  .hero__title-bottom {
+    margin-top: 6rem;
   }
 
   .footer__top {
@@ -916,10 +957,8 @@ body {
   }
 }
 
-.footer__extras {
-  display: contents;
-}
 
+/* ── Footer — Tips & Credits ── */
 .footer__tips-title,
 .footer__credits-title {
   font-family: var(--font-mono);
@@ -1009,25 +1048,4 @@ body {
   letter-spacing: 0.15em;
   color: rgba(255, 255, 255, 0.25);
   text-transform: uppercase;
-}
-
-/* Responsive: collapse to 2-col then 1-col */
-@media (max-width: 1100px) {
-  .footer__top {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .footer__brand {
-    grid-column: 1 / -1;
-  }
-
-  .footer__newsletter {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 600px) {
-  .footer__top {
-    grid-template-columns: 1fr;
-  }
 }

@@ -13,34 +13,571 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    .page-header {
-      padding: 150px 2rem 80px;
+    .lm-header {
+      padding: 160px 2rem 5rem;
       background: var(--dark);
-      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lm-header__bg-text {
+      position: absolute;
+      bottom: -0.15em;
+      right: -0.05em;
+      font-family: var(--font-display);
+      font-size: 14rem;
+      color: rgba(255, 255, 255, 0.03);
+      text-transform: uppercase;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.02em;
+    }
+
+    .lm-header__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .lm-header__eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .lm-header__eyebrow::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--red);
+    }
+
+    .lm-header__title {
+      font-family: var(--font-display);
+      font-size: 7rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    .lm-header__title em {
+      color: var(--red);
+      font-style: normal;
+    }
+
+    .lm-header__desc {
+      font-family: var(--font-script);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.5);
+      max-width: 480px;
+      line-height: 1.65;
+    }
+
+    .lm-header__count {
+      margin-top: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .lm-filterbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(14, 12, 9, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .lm-filterbar__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      height: 56px;
+    }
+
+    .lm-filter-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .lm-filter-tab {
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      background: none;
+      border: 1px solid transparent;
+      padding: 0.35rem 0.9rem;
+      cursor: pointer;
+      transition: color 0.25s, border-color 0.25s;
+      white-space: nowrap;
+    }
+
+    .lm-filter-tab:hover {
+      color: rgba(255, 255, 255, 0.75);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .lm-filter-tab.active {
+      color: var(--white);
+      border-color: var(--red);
+      background: rgba(192, 57, 43, 0.1);
+    }
+
+    /* Garis bawah animasi pada tab aktif */
+    .lm-filter-tab.active::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: var(--red);
+      animation: tabUnderline 0.3s ease forwards;
+    }
+
+    @keyframes tabUnderline {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    .lm-sort-select {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.25s, color 0.25s;
+    }
+
+    .lm-sort-select:hover,
+    .lm-sort-select:focus {
+      border-color: rgba(255, 255, 255, 0.3);
       color: var(--white);
     }
 
-    .page-header__title {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 6rem);
-      color: var(--red);
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
+    .lm-sort-select option {
+      background: #1a1510;
+      color: var(--white);
     }
 
-    .page-header__subtitle {
-      font-family: var(--font-script);
-      font-style: italic;
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-top: 10px;
+    .lm-section {
+      background: var(--cream);
+      padding: 4rem 0 6rem;
     }
 
-    .page-content {
-      max-width: 1000px;
+    .lm-grid-inner {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 4rem 2rem;
-      min-height: 50vh;
+      padding: 0 2rem;
+    }
+
+    .lm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .lm-card {
+      background: var(--dark);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      position: relative;
+      animation: lmCardIn 0.6s ease both;
+    }
+
+    @keyframes lmCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .lm-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+    }
+
+    .lm-card__img-wrap {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+
+    .lm-card__img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7) saturate(0.85);
+      transition: filter 0.45s, transform 0.45s;
+    }
+
+    .lm-card:hover .lm-card__img-wrap img {
+      filter: brightness(0.85) saturate(1.05);
+      transform: scale(1.05);
+    }
+
+    .lm-card__img-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 30%, rgba(14, 12, 9, 0.8) 100%);
+    }
+
+    .lm-card__index {
+      position: absolute;
+      bottom: 0.6rem;
+      right: 0.8rem;
+      font-family: var(--font-display);
+      font-size: 4.5rem;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.08);
+      letter-spacing: -0.02em;
+      user-select: none;
+      pointer-events: none;
+      transition: color 0.35s;
+    }
+
+    .lm-card:hover .lm-card__index {
+      color: rgba(192, 57, 43, 0.18);
+    }
+
+    /* Badge era di pojok kiri atas gambar */
+    .lm-card__era-badge {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.8rem;
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: rgba(192, 57, 43, 0.75);
+      padding: 0.2rem 0.55rem;
+    }
+
+    .lm-card__body {
+      padding: 1.2rem 1.4rem 1rem;
+    }
+
+    .lm-card__category {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.4rem;
+    }
+
+    .lm-card__title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 0.01em;
+      line-height: 1.05;
+      margin-bottom: 0.6rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .lm-card__desc {
+      font-family: var(--font-serif);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.5);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .lm-card__foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1.4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 0.6rem;
+    }
+
+    .lm-card__year {
+      font-family: var(--font-mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.3);
+      text-transform: uppercase;
+    }
+
+    .lm-card__arrow {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--red);
+      transition: transform 0.25s;
+    }
+
+    .lm-card:hover .lm-card__arrow {
+      transform: translateX(4px);
+    }
+
+    /* Panel Detail Landmark */
+    .lm-detail {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 200;
+      background: rgba(5, 4, 2, 0.88);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lm-detail.open {
+      display: flex;
+      animation: detailFadeIn 0.3s ease;
+    }
+
+    @keyframes detailFadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .lm-detail__panel {
+      background: var(--dark);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      animation: detailSlideUp 0.35s ease;
+    }
+
+    @keyframes detailSlideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .lm-detail__img {
+      position: relative;
+      min-height: 320px;
+    }
+
+    .lm-detail__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.65) saturate(0.85);
+    }
+
+    .lm-detail__img-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to right, transparent 60%, rgba(14, 12, 9, 0.9) 100%);
+    }
+
+    .lm-detail__content {
+      padding: 2.5rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .lm-detail__close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--white);
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      padding: 0.35rem 0.7rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.2s, border-color 0.2s;
+      z-index: 10;
+    }
+
+    .lm-detail__close:hover {
+      background: rgba(192, 57, 43, 0.2);
+      border-color: var(--red);
+    }
+
+    .lm-detail__eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .lm-detail__title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+    }
+
+    .lm-detail__body {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .lm-detail__facts {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .lm-detail__fact {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .lm-detail__fact-key {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .lm-detail__fact-val {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .lm-empty {
+      display: none;
+      text-align: center;
+      padding: 5rem 2rem;
+      color: rgba(0, 0, 0, 0.25);
+    }
+
+    .lm-empty__text {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      text-transform: uppercase;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .lm-empty__sub {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 0.8rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .lm-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .lm-detail__panel {
+        grid-template-columns: 1fr;
+      }
+
+      .lm-detail__img {
+        min-height: 220px;
+      }
+
+      .lm-detail__img-overlay {
+        background: linear-gradient(to bottom, transparent 60%, rgba(14, 12, 9, 0.9) 100%);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .lm-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lm-filterbar__inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding-top: 0.6rem;
+        padding-bottom: 0.6rem;
+        gap: 0.5rem;
+      }
+
+      .lm-filter-tabs {
+        order: 2;
+        width: 100%;
+      }
+
+      .lm-sort-select {
+        order: 1;
+        font-size: 0.5rem;
+      }
     }
   </style>
 </head>
@@ -53,14 +590,12 @@
         <span class="navbar__logo-main">Vatican</span>
         <span class="navbar__logo-sub">City</span>
       </a>
-
       <ul class="navbar__links" id="navLinks">
         <li><a href="about.html">About</a></li>
         <li><a href="landmarks.html">Landmarks</a></li>
         <li><a href="history.html">History</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-
       <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span>
         <span></span>
@@ -69,26 +604,65 @@
     </div>
   </nav>
 
-  <header class="page-header">
-    <h1 class="page-header__title">Landmarks</h1>
-    <p class="page-header__subtitle">Iconic sites of history and faith.</p>
+  <header class="lm-header">
+    <div class="lm-header__bg-text" aria-hidden="true">LOCI</div>
+    <div class="lm-header__inner">
+      <p class="lm-header__eyebrow">Vol. II — Sacred &amp; Historic Sites</p>
+      <h1 class="lm-header__title">Sacred<br /><em>Land&shy;marks</em></h1>
+      <p class="lm-header__desc">
+        From the breath-taking dome of St. Peter's Basilica to the gilded ceilings of the
+        Sistine Chapel — each site a testament to centuries of faith, art, and power.
+      </p>
+      <p class="lm-header__count" id="landmarkCount">Loading landmarks…</p>
+    </div>
   </header>
 
-  <main class="page-content">
+  <div class="lm-filterbar">
+    <div class="lm-filterbar__inner">
+      <div class="lm-filter-tabs" id="filterTabs" role="tablist" aria-label="Filter landmarks by category">
+        <button class="lm-filter-tab active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="lm-filter-tab" data-filter="basilica" role="tab" aria-selected="false">Basilica</button>
+        <button class="lm-filter-tab" data-filter="chapel" role="tab" aria-selected="false">Chapel</button>
+        <button class="lm-filter-tab" data-filter="museum" role="tab" aria-selected="false">Museums</button>
+        <button class="lm-filter-tab" data-filter="garden" role="tab" aria-selected="false">Gardens</button>
+        <button class="lm-filter-tab" data-filter="other" role="tab" aria-selected="false">Other</button>
+      </div>
 
-    <p>Ini adalah area konten. Silakan hapus teks ini dan ganti dengan elemen HTML sesuai kebutuhan halaman.</p>
+      <select class="lm-sort-select" id="sortSelect" aria-label="Sort landmarks">
+        <option value="default">Sort: Default</option>
+        <option value="name-asc">Name A–Z</option>
+        <option value="name-desc">Name Z–A</option>
+        <option value="year-asc">Era: Oldest</option>
+        <option value="year-desc">Era: Newest</option>
+      </select>
+    </div>
+  </div>
 
-  </main>
+  <section class="lm-section">
+    <div class="lm-grid-inner">
+      <div class="lm-grid" id="landmarkGrid"></div>
+
+
+      <div class="lm-empty" id="emptyState" aria-live="polite">
+        <p class="lm-empty__text">None<br />Found</p>
+        <p class="lm-empty__sub">No landmarks match this filter.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="lm-detail" id="detailOverlay" role="dialog" aria-modal="true" aria-label="Landmark detail">
+    <div class="lm-detail__panel" id="detailPanel">
+      <!-- Konten diisi otomatis oleh JS -->
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="footer__top">
-
       <div class="footer__brand">
         <p class="footer__brand-eyebrow">✦ Sovereign City-State ✦</p>
         <h3 class="footer__brand-name">Vatican<br /><span>City</span></h3>
         <p class="footer__brand-tagline">The Heart of History and Faith</p>
       </div>
-
       <nav class="footer__nav">
         <div class="footer__nav-col">
           <h4 class="footer__nav-title">Pages</h4>
@@ -117,7 +691,6 @@
           </ul>
         </div>
       </nav>
-
       <div>
         <h4 class="footer__tips-title">Visit Tips</h4>
         <ul class="footer__tips-list">
@@ -151,7 +724,6 @@
           </li>
         </ul>
       </div>
-
       <div>
         <h4 class="footer__credits-title">Developer Credits</h4>
         <div class="footer__team">
@@ -178,11 +750,8 @@
           </div>
         </div>
       </div>
-
     </div>
-
     <div class="footer__divider"></div>
-
     <div class="footer__bottom">
       <p class="footer__copy">© 2026 Kelompok Vatikan — Tugas Besar Web Dasar. All rights reserved.</p>
       <div class="footer__links">
@@ -193,6 +762,334 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    const LANDMARKS = [
+      {
+        id: 1,
+        slug: 'st-peters-basilica',
+        name: "St. Peter's Basilica",
+        category: 'basilica',
+        era: 'Renaissance',
+        year: 1626,
+        img: 'assets/Landmark/Landmark1.jpg',
+        shortDesc: "The crown jewel of Vatican City — a colossal Renaissance basilica that took over a century to complete and remains the largest church in the world.",
+        fullDesc: "Standing where the Apostle Peter is believed to have been martyred and buried, St. Peter's Basilica is one of the holiest sites in Christendom. The present basilica was begun under Pope Julius II in 1506 to replace the old Constantinian basilica. Michelangelo, Bernini, Bramante, and Raphael all left their mark on this monumental structure.",
+        facts: [
+          { key: 'Capacity', val: '~20,000 people' },
+          { key: 'Height (dome)', val: '136.57 m' },
+          { key: 'Completed', val: '1626 AD' },
+          { key: 'Architect', val: 'Michelangelo et al.' },
+        ]
+      },
+      {
+        id: 2,
+        slug: 'sistine-chapel',
+        name: "Sistine Chapel",
+        category: 'chapel',
+        era: 'Renaissance',
+        year: 1512,
+        img: 'assets/Landmark/Landmark2.jpg',
+        shortDesc: "Michelangelo's masterpiece ceiling and The Last Judgement define this sacred chapel, the site of every papal conclave since 1492.",
+        fullDesc: "Commissioned by Pope Sixtus IV and completed in 1481, the Sistine Chapel is renowned for its Renaissance frescoes, especially the ceiling painted by Michelangelo between 1508 and 1512. The iconic 'Creation of Adam' draws millions of visitors yearly. Today, the chapel serves as the setting for the papal conclave — the election of a new Pope.",
+        facts: [
+          { key: 'Ceiling painted', val: '1508–1512' },
+          { key: 'The Last Judgement', val: '1536–1541' },
+          { key: 'Dimension', val: '40.9 × 13.4 m' },
+          { key: 'Artist', val: 'Michelangelo Buonarroti' },
+        ]
+      },
+      {
+        id: 3,
+        slug: 'vatican-museums',
+        name: "Vatican Museums",
+        category: 'museum',
+        era: 'Papal',
+        year: 1506,
+        img: 'assets/Landmark/Landmark3.jpg',
+        shortDesc: "One of the world's greatest art collections, spanning Egyptian antiquities to modern religious art — a legacy built over five centuries of papal patronage.",
+        fullDesc: "Founded by Pope Julius II in the early 16th century, the Vatican Museums house an extraordinary collection of art and historical artefacts accumulated by the Catholic Church over centuries. The museums contain approximately 70,000 works, of which 20,000 are on display. Among the highlights are the Raphael Rooms, the Gallery of Maps, and the Museum of Modern Religious Art.",
+        facts: [
+          { key: 'Founded', val: 'c. 1506' },
+          { key: 'Works owned', val: '~70,000' },
+          { key: 'Galleries', val: '54 galleries' },
+          { key: 'Annual visitors', val: '~6 million' },
+        ]
+      },
+      {
+        id: 4,
+        slug: 'st-peters-square',
+        name: "St. Peter's Square",
+        category: 'other',
+        era: 'Baroque',
+        year: 1667,
+        img: 'assets/Landmark/Landmark4.jpg',
+        shortDesc: "Bernini's grand colonnaded piazza is the ceremonial forecourt of Christendom — a theatrical stage for papal blessings and the gathering of the faithful.",
+        fullDesc: "Designed by Gian Lorenzo Bernini and completed in 1667, St. Peter's Square is one of the finest examples of Baroque urban design. The elliptical piazza is flanked by two sweeping colonnades of 284 columns and 88 pilasters, topped by 140 statues of saints. At its center stands a 25.5-metre Egyptian obelisk brought to Rome by Emperor Caligula.",
+        facts: [
+          { key: 'Designer', val: 'Gian Lorenzo Bernini' },
+          { key: 'Completed', val: '1667 AD' },
+          { key: 'Columns', val: '284 columns' },
+          { key: 'Obelisk height', val: '25.5 m' },
+        ]
+      },
+      {
+        id: 5,
+        slug: 'apostolic-palace',
+        name: "Apostolic Palace",
+        category: 'other',
+        era: 'Medieval',
+        year: 1589,
+        img: 'assets/Landmark/Landmark5.jpg',
+        shortDesc: "The official residence of the Pope, a vast complex of chapels, museums, and administrative offices built over several centuries of papal construction.",
+        fullDesc: "The Apostolic Palace is the official residence of the Pope and has served as the papal home since 1377. The sprawling complex covers roughly 55,000 m² and contains more than 1,000 rooms. It houses the papal apartments, the Sistine Chapel, the Vatican Museums, the Vatican Library, and numerous offices of the Roman Curia.",
+        facts: [
+          { key: 'Area', val: '~55,000 m²' },
+          { key: 'Rooms', val: '1,000+' },
+          { key: 'Papal residence since', val: '1377 AD' },
+          { key: 'Architect', val: 'Domenico Fontana' },
+        ]
+      },
+      {
+        id: 6,
+        slug: 'vatican-gardens',
+        name: "Vatican Gardens",
+        category: 'garden',
+        era: 'Renaissance',
+        year: 1279,
+        img: 'assets/Landmark/Landmark6.jpg',
+        shortDesc: "Covering more than half of Vatican City, these meticulously maintained gardens blend formal Italian, French, and English styles around centuries-old fountains.",
+        fullDesc: "The Vatican Gardens cover about 23 hectares — more than half the total area of Vatican City. They have been cultivated since the 13th century under Pope Nicholas III. The gardens feature formal Italian-style terracing, manicured hedgerows, fountains dating to the Renaissance, the papal helipad, and the Vatican Radio tower. Access is restricted and only possible through guided tours.",
+        facts: [
+          { key: 'Area', val: '~23 hectares' },
+          { key: 'First cultivated', val: 'c. 1279 AD' },
+          { key: 'Fountains', val: 'Several (16th c.)' },
+          { key: 'Access', val: 'Guided tours only' },
+        ]
+      },
+      {
+        id: 7,
+        slug: 'castel-sant-angelo',
+        name: "Castel Sant'Angelo",
+        category: 'other',
+        era: 'Ancient',
+        year: 139,
+        img: 'assets/Landmark/Landmark7.jpg',
+        shortDesc: "Originally built as a mausoleum for Emperor Hadrian, this fortress later served as a refuge for popes in times of danger, connected to the Vatican by a secret passage.",
+        fullDesc: "Commissioned by Roman Emperor Hadrian in 123 AD and completed in 139 AD, Castel Sant'Angelo began as a mausoleum for the emperor and his family. Over the centuries it became a fortress, a prison, and ultimately a papal refuge. A secret elevated passageway — the Passetto di Borgo — connects the castle directly to the Vatican, allowing popes to flee in times of crisis.",
+        facts: [
+          { key: 'Built', val: '123–139 AD' },
+          { key: 'Original purpose', val: 'Imperial mausoleum' },
+          { key: 'Current use', val: 'National museum' },
+          { key: 'Secret passage', val: 'Passetto di Borgo' },
+        ]
+      },
+      {
+        id: 8,
+        slug: 'paul-vi-audience-hall',
+        name: "Paul VI Audience Hall",
+        category: 'other',
+        era: 'Modern',
+        year: 1971,
+        img: 'assets/Landmark/Landmark8.jpg',
+        shortDesc: "A striking piece of 20th-century architecture designed by Pier Luigi Nervi, with an unusual serpentine roof that seats over 6,000 for papal audiences.",
+        fullDesc: "Designed by Italian architect Pier Luigi Nervi and opened in 1971, the Paul VI Audience Hall — also known as the Hall of the Papal Audiences — is a large modern building straddling the border between Vatican City and Rome. Its distinctive poured-concrete parabolic roof shelters more than 6,300 seats. The hall is the principal setting for the Pope's weekly general audiences.",
+        facts: [
+          { key: 'Opened', val: '1971 AD' },
+          { key: 'Architect', val: 'Pier Luigi Nervi' },
+          { key: 'Capacity', val: '6,300 seats' },
+          { key: 'Material', val: 'Reinforced concrete' },
+        ]
+      },
+    ];
+
+    // State halaman
+    let activeFilter = 'all';
+    let activeSortKey = 'default';
+    let activeDetailId = null;
+
+    // Ambil elemen-elemen yang dibutuhkan dari HTML
+    const grid = document.getElementById('landmarkGrid');
+    const emptyState = document.getElementById('emptyState');
+    const countEl = document.getElementById('landmarkCount');
+    const filterTabs = document.getElementById('filterTabs');
+    const sortSelect = document.getElementById('sortSelect');
+    const overlay = document.getElementById('detailOverlay');
+    const panel = document.getElementById('detailPanel');
+
+    // Fungsi untuk format angka menjadi 2 digit (1 → "01")
+    function formatIndex(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    // Fungsi untuk menampilkan kartu ke dalam grid
+    function renderGrid(data) {
+      grid.innerHTML = '';
+
+      // Tampilkan pesan kosong jika tidak ada data
+      if (data.length === 0) {
+        emptyState.style.display = 'block';
+        countEl.textContent = 'No landmarks found';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      countEl.textContent = 'Showing ' + data.length + ' landmark' + (data.length !== 1 ? 's' : '');
+
+      // Looping — buat kartu untuk setiap landmark
+      for (let i = 0; i < data.length; i++) {
+        const lm = data[i];
+        const delay = i * 0.07;
+
+        const card = document.createElement('article');
+        card.className = 'lm-card';
+        card.style.animationDelay = delay + 's';
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', 'View details for ' + lm.name);
+        card.dataset.id = lm.id;
+
+        card.innerHTML =
+          '<div class="lm-card__img-wrap">' +
+          '<img src="' + lm.img + '" alt="' + lm.name + '" loading="lazy" />' +
+          '<div class="lm-card__img-overlay"></div>' +
+          '<span class="lm-card__era-badge">' + lm.era + '</span>' +
+          '<div class="lm-card__index" aria-hidden="true">' + formatIndex(i + 1) + '</div>' +
+          '</div>' +
+          '<div class="lm-card__body">' +
+          '<p class="lm-card__category">' + lm.category + '</p>' +
+          '<h2 class="lm-card__title">' + lm.name + '</h2>' +
+          '<p class="lm-card__desc">' + lm.shortDesc + '</p>' +
+          '</div>' +
+          '<div class="lm-card__foot">' +
+          '<span class="lm-card__year">Est. ' + lm.year + ' AD</span>' +
+          '<span class="lm-card__arrow">→ Explore</span>' +
+          '</div>';
+
+        // Klik kartu → buka panel detail
+        card.addEventListener('click', function () {
+          openDetail(lm.id);
+        });
+
+        // Keyboard: Enter atau Space juga membuka detail
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openDetail(lm.id);
+          }
+        });
+
+        grid.appendChild(card);
+      }
+    }
+
+    // Fungsi untuk menerapkan filter dan sort
+    function applyFilterSort() {
+      // Filter berdasarkan kategori yang dipilih
+      let result = LANDMARKS.filter(function (lm) {
+        if (activeFilter === 'all') return true;
+        return lm.category === activeFilter;
+      });
+
+      // Sort berdasarkan pilihan dropdown
+      if (activeSortKey === 'name-asc') {
+        result = result.sort(function (a, b) { return a.name.localeCompare(b.name); });
+      } else if (activeSortKey === 'name-desc') {
+        result = result.sort(function (a, b) { return b.name.localeCompare(a.name); });
+      } else if (activeSortKey === 'year-asc') {
+        result = result.sort(function (a, b) { return a.year - b.year; });
+      } else if (activeSortKey === 'year-desc') {
+        result = result.sort(function (a, b) { return b.year - a.year; });
+      }
+
+      renderGrid(result);
+    }
+
+    // Fungsi untuk membuka panel detail landmark
+    function openDetail(id) {
+      const lm = LANDMARKS.find(function (l) { return l.id === id; });
+      if (!lm) return;
+
+      activeDetailId = id;
+
+      // Looping — buat daftar fakta dari array lm.facts
+      let factsHTML = '';
+      for (let f = 0; f < lm.facts.length; f++) {
+        factsHTML +=
+          '<li class="lm-detail__fact">' +
+          '<span class="lm-detail__fact-key">' + lm.facts[f].key + '</span>' +
+          '<span class="lm-detail__fact-val">' + lm.facts[f].val + '</span>' +
+          '</li>';
+      }
+
+      panel.innerHTML =
+        '<div class="lm-detail__img">' +
+        '<img src="' + lm.img + '" alt="' + lm.name + '" />' +
+        '<div class="lm-detail__img-overlay"></div>' +
+        '</div>' +
+        '<div class="lm-detail__content">' +
+        '<button class="lm-detail__close" id="detailClose" aria-label="Close detail panel">✕ Close</button>' +
+        '<p class="lm-detail__eyebrow">' + lm.era + ' · ' + lm.year + ' AD</p>' +
+        '<h2 class="lm-detail__title">' + lm.name + '</h2>' +
+        '<p class="lm-detail__body">' + lm.fullDesc + '</p>' +
+        '<ul class="lm-detail__facts">' + factsHTML + '</ul>' +
+        '</div>';
+
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      // Pasang event listener ke tombol close yang baru dibuat
+      document.getElementById('detailClose').addEventListener('click', closeDetail);
+    }
+
+    // Fungsi untuk menutup panel detail
+    function closeDetail() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      activeDetailId = null;
+    }
+
+    // Event: klik tombol filter kategori
+    filterTabs.addEventListener('click', function (e) {
+      const tab = e.target.closest('.lm-filter-tab');
+      if (!tab) return;
+
+      if (tab.dataset.filter === activeFilter) return;
+
+      activeFilter = tab.dataset.filter;
+
+      // Update tampilan tab aktif
+      const allTabs = filterTabs.querySelectorAll('.lm-filter-tab');
+      for (let t = 0; t < allTabs.length; t++) {
+        allTabs[t].classList.remove('active');
+        allTabs[t].setAttribute('aria-selected', 'false');
+      }
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      applyFilterSort();
+    });
+
+    // Event: ganti pilihan sort
+    sortSelect.addEventListener('change', function (e) {
+      activeSortKey = e.target.value;
+      applyFilterSort();
+    });
+
+    // Klik area gelap di luar panel → tutup detail
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeDetail();
+    });
+
+    // Tekan ESC → tutup detail
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && activeDetailId !== null) closeDetail();
+    });
+
+    // Jalankan pertama kali saat halaman dimuat
+    applyFilterSort();
+
+  </script>
+
 </body>
 
 </html>
