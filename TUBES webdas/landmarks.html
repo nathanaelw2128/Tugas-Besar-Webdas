@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
+    /*CSS buat Header*/
     .lm-header {
       padding: 160px 2rem 5rem;
       background: var(--dark);
@@ -325,6 +326,7 @@
       line-height: 1.65;
       color: rgba(255, 255, 255, 0.5);
       display: -webkit-box;
+      line-clamp: 3;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
@@ -943,9 +945,6 @@
         const card = document.createElement('article');
         card.className = 'lm-card';
         card.style.animationDelay = delay + 's';
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('role', 'button');
-        card.setAttribute('aria-label', 'View details for ' + lm.name);
         card.dataset.id = lm.id;
 
         card.innerHTML =
@@ -970,19 +969,11 @@
           openDetail(lm.id);
         });
 
-        // Keyboard: Enter atau Space juga membuka detail
-        card.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            openDetail(lm.id);
-          }
-        });
-
         grid.appendChild(card);
       }
     }
 
-    // Fungsi untuk menerapkan filter dan sort
+    // Fungsi untuk untuk filter dan sort
     function applyFilterSort() {
       // Filter berdasarkan kategori yang dipilih
       let result = LANDMARKS.filter(function (lm) {
