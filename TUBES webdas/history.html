@@ -2,204 +2,390 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>History — Vatican City</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History — Vatican City</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 
-  <style>
-    .page-header {
-      padding: 150px 2rem 80px;
-      background: var(--dark);
-      text-align: center;
-      color: var(--white);
-    }
+    <style>
+        .page-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem 5rem;
+            min-height: 50vh;
+        }
 
-    .page-header__title {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 6rem);
-      color: var(--red);
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-    }
+        .history-article {
+            display: grid;
+            gap: 1.4rem;
+        }
 
-    .page-header__subtitle {
-      font-family: var(--font-script);
-      font-style: italic;
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-top: 10px;
-    }
+        .history-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(245, 239, 229, 0.95));
+            border: 1px solid rgba(14, 12, 9, 0.08);
+            border-radius: 24px;
+            box-shadow: 0 18px 35px rgba(14, 12, 9, 0.08);
+            padding: 1.6rem;
+        }
 
-    .page-content {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-      min-height: 50vh;
-      /* Biar footer nggak naik kalau konten dikit */
-    }
-  </style>
+        .history-card--hero {
+            padding: 2rem;
+            background:
+                linear-gradient(135deg, rgba(10, 8, 5, 0.92), rgba(27, 21, 17, 0.88)),
+                radial-gradient(circle at top right, rgba(192, 57, 43, 0.18), transparent 30%);
+            color: var(--white);
+        }
+
+        .history-eyebrow {
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.28em;
+            font-size: 0.62rem;
+            color: var(--red);
+            margin-bottom: 0.6rem;
+        }
+
+        .history-card--hero .history-eyebrow {
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .history-card h2,
+        .history-card h3 {
+            font-family: var(--font-display);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: var(--dark);
+            margin-bottom: 0.7rem;
+        }
+
+        .history-card--hero h2,
+        .history-card--hero h3 {
+            color: var(--white);
+        }
+
+        .history-card p,
+        .history-card li {
+            font-family: var(--font-script);
+            font-size: 1.03rem;
+            line-height: 1.75;
+            color: #342e27;
+        }
+
+        .history-card--hero p,
+        .history-card--hero li {
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        .history-lead {
+            max-width: 720px;
+            font-size: 1.08rem;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .history-grid {
+            display: grid;
+            gap: 1.2rem;
+            grid-template-columns: 1.2fr 0.8fr;
+        }
+
+        .history-quote {
+            border-left: 3px solid var(--red);
+            padding-left: 1rem;
+            font-style: italic;
+            background: rgba(192, 57, 43, 0.06);
+            border-radius: 14px;
+            margin-top: 0.9rem;
+        }
+
+        .history-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 18px;
+            border: 1px solid rgba(14, 12, 9, 0.08);
+            padding: 1rem;
+        }
+
+        .timeline-year {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 0.45rem;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .history-highlights {
+            display: grid;
+            gap: 0.75rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            margin-top: 1rem;
+        }
+
+        .highlight-box {
+            border-radius: 18px;
+            padding: 1rem;
+            background: rgba(14, 12, 9, 0.04);
+            border: 1px solid rgba(14, 12, 9, 0.08);
+        }
+
+        .highlight-box strong {
+            display: block;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.68rem;
+            color: var(--red);
+            margin-bottom: 0.4rem;
+        }
+
+        @media (max-width: 900px) {
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <nav class="navbar" id="navbar">
+        <div class="navbar__inner">
+            <a href="index.html" class="navbar__logo">
+                <span class="navbar__logo-main">Vatican</span>
+                <span class="navbar__logo-sub">City</span>
+            </a>
 
-  <nav class="navbar" id="navbar">
-    <div class="navbar__inner">
-      <a href="index.html" class="navbar__logo">
-        <span class="navbar__logo-main">Vatican</span>
-        <span class="navbar__logo-sub">City</span>
-      </a>
+            <ul class="navbar__links" id="navLinks">
+                <li><a href="landmarks.html">Landmarks</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="review.html">Review</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
 
-      <ul class="navbar__links" id="navLinks">
-        <li><a href="about.html">About</a></li>
-        <li><a href="landmarks.html">Landmarks</a></li>
-        <li><a href="history.html">History</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-
-      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
-
-  <header class="page-header">
-    <h1 class="page-header__title">History</h1>
-    <p class="page-header__subtitle">Two millennia of civilization.</p>
-  </header>
-
-  <main class="page-content">
-
-    <p>Ini adalah area konten. Silakan hapus teks ini dan ganti dengan elemen HTML sesuai kebutuhan halaman.</p>
-
-  </main>
-
-
-  <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════ -->
-  <footer class="footer">
-    <div class="footer__top">
-
-      <!-- Brand -->
-      <div class="footer__brand">
-        <p class="footer__brand-eyebrow">✦ Sovereign City-State ✦</p>
-        <h3 class="footer__brand-name">Vatican<br /><span>City</span></h3>
-        <p class="footer__brand-tagline">The Heart of History and Faith</p>
-      </div>
-
-      <!-- Nav -->
-      <nav class="footer__nav">
-        <div class="footer__nav-col">
-          <h4 class="footer__nav-title">Pages</h4>
-          <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="landmarks.html">Landmarks</a></li>
-            <li><a href="history.html">History</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
+            <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <div class="footer__nav-col">
-          <h4 class="footer__nav-title">Discover</h4>
-          <ul>
-            <li><a href="landmarks.html">St. Peter's Basilica</a></li>
-            <li><a href="landmarks.html">Sistine Chapel</a></li>
-            <li><a href="landmarks.html">Vatican Museums</a></li>
-            <li><a href="landmarks.html">Swiss Guard</a></li>
-          </ul>
+    </nav>
+    <header class="lm-header">
+        <div class="lm-header__inner">
+            <p class="lm-header__eyebrow">Vol. III — Echoes of Antiquity</p>
+            <h1 class="lm-header__title">Great<br /><em>History</em></h1>
+            <p class="lm-header__desc">
+                Trace the profound legacy of the Roman See, from the ancient foundations of St. Peter's martyrdom to the
+                signing of the Lateran Treaty that shaped the modern Vatican state.
+            </p>
         </div>
-        <div class="footer__nav-col">
-          <h4 class="footer__nav-title">Info</h4>
-          <ul>
-            <li><a href="about.html">About Vatican City</a></li>
-            <li><a href="history.html">History</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
+    </header>
 
-      <!-- Visitor Tips -->
-      <div>
-        <h4 class="footer__tips-title">Visit Tips</h4>
-        <ul class="footer__tips-list">
-          <li class="footer__tip">
-            <span class="footer__tip-num">01</span>
-            <div class="footer__tip-body">
-              <strong>Dress Code</strong>
-              <span>Cover shoulders &amp; knees. No sleeveless tops or shorts inside.</span>
-            </div>
-          </li>
-          <li class="footer__tip">
-            <span class="footer__tip-num">02</span>
-            <div class="footer__tip-body">
-              <strong>Opening Hours</strong>
-              <span>Basilica: daily 07:00–19:00. Museums: Mon–Sat 09:00–18:00.</span>
-            </div>
-          </li>
-          <li class="footer__tip">
-            <span class="footer__tip-num">03</span>
-            <div class="footer__tip-body">
-              <strong>Book in Advance</strong>
-              <span>Buy tickets online to skip 2–3 hour walk-in queues.</span>
-            </div>
-          </li>
-          <li class="footer__tip">
-            <span class="footer__tip-num">04</span>
-            <div class="footer__tip-body">
-              <strong>Silence &amp; Respect</strong>
-              <span>No flash photography. Keep voices low inside the Chapel.</span>
-            </div>
-          </li>
-        </ul>
-      </div>
+    <main class="page-content">
+        <article class="history-article">
+            <section class="history-card history-card--hero">
+                <p class="history-eyebrow">A city of faith, art, and statehood</p>
+                <h2>The history of Vatican City, from St. Peter's tomb to the modern city-state</h2>
+                <p class="history-lead">Vatican City is more than a religious center; it is one of the most influential
+                    cities in the world—a place where history, art, diplomacy, and faith have shaped the face of Europe
+                    for over two millennia.</p>
+            </section>
 
-      <!-- Credits -->
-      <div>
-        <h4 class="footer__credits-title">Developer Credits</h4>
-        <div class="footer__team">
-          <div class="footer__member">
-            <div class="footer__member-avatar">DN</div>
+            <section class="history-grid">
+                <article class="history-card">
+                    <p class="history-eyebrow">Origins</p>
+                    <h3>Early traces in ancient Rome</h3>
+                    <p>The area that is now Vatican City grew along the Tiber River, in a place long recognized as
+                        significant in ancient Rome. According to Catholic tradition, this is where Saint Peter, the
+                        first apostle, died and was buried. From this origin, a sacred area developed into a center of
+                        pilgrimage, prayer, and spiritual authority.</p>
+                    <p class="history-quote">“Upon the tombs of martyrs and popes, the history of the Church grew into
+                        one of the most influential forces in the world.”</p>
+                </article>
+
+                <article class="history-card">
+                    <p class="history-eyebrow">A central role</p>
+                    <h3>A global spiritual center</h3>
+                    <p>As the Catholic Church expanded, the Vatican area grew into a symbol of unity in faith. St.
+                        Peter’s Basilica and the artistic treasures bequeathed by the popes made this place not only a
+                        place of worship, but also a living museum of history, architecture, and culture.</p>
+                </article>
+            </section>
+
+            <section class="history-timeline">
+                <article class="timeline-item">
+                    <span class="timeline-year">4th century</span>
+                    <h3>St. Peter’s Tomb</h3>
+                    <p>Tradition holds that this site became the burial place of Saint Peter, marking the beginning of
+                        the area’s importance in Church history.</p>
+                </article>
+                <article class="timeline-item">
+                    <span class="timeline-year">756</span>
+                    <h3>Grant of land by King Pepin</h3>
+                    <p>Territories around Rome were given to the Pope, which became the first step toward the formation
+                        of a vast Papal State.</p>
+                </article>
+                <article class="timeline-item">
+                    <span class="timeline-year">1929</span>
+                    <h3>Lateran Treaty</h3>
+                    <p>This agreement established Vatican City as an independent and sovereign state, separating the
+                        status of the Catholic Church from Italy.</p>
+                </article>
+                <article class="timeline-item">
+                    <span class="timeline-year">Today</span>
+                    <h3>The modern city-state</h3>
+                    <p>Today, Vatican City is a diplomatic center, a vital place for the Catholic Church, and a global
+                        destination that unites art, history, and faith.</p>
+                </article>
+            </section>
+
+            <section class="history-card">
+                <p class="history-eyebrow">Why its history matters</p>
+                <h3>A living legacy</h3>
+                <p>The history of Vatican City is not only about a small state, but about its influence on culture, art,
+                    law, and international relations. From its magnificent basilica to the halls holding Michelangelo’s
+                    works, every corner tells a story of struggle, grandeur, and spiritual perseverance.</p>
+
+                <div class="history-highlights">
+                    <article class="highlight-box">
+                        <strong>Artistic heritage</strong>
+                        The birthplace of major works by Michelangelo, Raphael, and other Renaissance masters.
+                    </article>
+                    <article class="highlight-box">
+                        <strong>Diplomatic role</strong>
+                        A center of international relations connecting the Church and nations across the world.
+                    </article>
+                    <article class="highlight-box">
+                        <strong>Symbol of faith</strong>
+                        Still a destination for pilgrimage and a reflection of the long history of the Church.
+                    </article>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__top">
+
+            <div class="footer__brand">
+                <p class="footer__brand-eyebrow">✦ Sovereign City-State ✦</p>
+                <h3 class="footer__brand-name">Vatican<br /><span>City</span></h3>
+                <p class="footer__brand-tagline">The Heart of History and Faith</p>
+            </div>
+
+            <nav class="footer__nav">
+                <div class="footer__nav-col">
+                    <h4 class="footer__nav-title">Pages</h4>
+                    <ul>
+                        <li><a href="landmarks.html">Landmarks</a></li>
+                        <li><a href="history.html">History</a></li>
+                        <li><a href="review.html">Review</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer__nav-col">
+                    <h4 class="footer__nav-title">Discover</h4>
+                    <ul>
+                        <li><a href="landmarks.html">St. Peter's Basilica</a></li>
+                        <li><a href="landmarks.html">Sistine Chapel</a></li>
+                        <li><a href="landmarks.html">Vatican Museums</a></li>
+                        <li><a href="landmarks.html">Vatican Gardens</a></li>
+                    </ul>
+                </div>
+                <div class="footer__nav-col">
+                    <h4 class="footer__nav-title">Info</h4>
+                    <ul>
+                        <li><a href="history.html">About Vatican City</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
             <div>
-              <span class="footer__member-name">Darren Nicholas Heng</span>
-              <span class="footer__member-id">NRP · 2572019</span>
+                <h4 class="footer__tips-title">Visit Tips</h4>
+                <ul class="footer__tips-list">
+                    <li class="footer__tip">
+                        <span class="footer__tip-num">01</span>
+                        <div class="footer__tip-body">
+                            <strong>Dress Code</strong>
+                            <span>Cover shoulders &amp; knees. No sleeveless tops or shorts inside.</span>
+                        </div>
+                    </li>
+                    <li class="footer__tip">
+                        <span class="footer__tip-num">02</span>
+                        <div class="footer__tip-body">
+                            <strong>Opening Hours</strong>
+                            <span>Basilica: daily 07:00–19:00. Museums: Mon–Sat 09:00–18:00.</span>
+                        </div>
+                    </li>
+                    <li class="footer__tip">
+                        <span class="footer__tip-num">03</span>
+                        <div class="footer__tip-body">
+                            <strong>Book in Advance</strong>
+                            <span>Buy tickets online to skip 2–3 hour walk-in queues.</span>
+                        </div>
+                    </li>
+                    <li class="footer__tip">
+                        <span class="footer__tip-num">04</span>
+                        <div class="footer__tip-body">
+                            <strong>Silence &amp; Respect</strong>
+                            <span>No flash photography. Keep voices low inside the Chapel.</span>
+                        </div>
+                    </li>
+                </ul>
             </div>
-          </div>
-          <div class="footer__member">
-            <div class="footer__member-avatar">DA</div>
             <div>
-              <span class="footer__member-name">Daniel Arya Kristantara</span>
-              <span class="footer__member-id">NRP · 2572023</span>
+                <h4 class="footer__credits-title">Developer Credits</h4>
+                <div class="footer__team">
+                    <div class="footer__member">
+                        <div class="footer__member-avatar">DN</div>
+                        <div>
+                            <span class="footer__member-name">Darren Nicholas Heng</span>
+                            <span class="footer__member-id">NRP · 2572019</span>
+                        </div>
+                    </div>
+                    <div class="footer__member">
+                        <div class="footer__member-avatar">DA</div>
+                        <div>
+                            <span class="footer__member-name">Daniel Arya Kristantara</span>
+                            <span class="footer__member-id">NRP · 2572023</span>
+                        </div>
+                    </div>
+                    <div class="footer__member">
+                        <div class="footer__member-avatar">NW</div>
+                        <div>
+                            <span class="footer__member-name">Nathanael Wijaya</span>
+                            <span class="footer__member-id">NRP · 2572028</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="footer__member">
-            <div class="footer__member-avatar">NW</div>
-            <div>
-              <span class="footer__member-name">Nathanael Wijaya</span>
-              <span class="footer__member-id">NRP · 2572028</span>
-            </div>
-          </div>
+
         </div>
-      </div>
 
-    </div>
+        <div class="footer__divider"></div>
 
-    <div class="footer__divider"></div>
+        <div class="footer__bottom">
+            <p class="footer__copy">© 2026 Kelompok Vatikan — Tugas Besar Web Dasar. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <div class="footer__bottom">
-      <p class="footer__copy">© 2026 Kelompok Vatikan — Tugas Besar Web Dasar. All rights reserved.</p>
-      <div class="footer__links">
-        <a href="contact.html">Contact</a>
-        <a href="about.html">About</a>
-      </div>
-    </div>
-  </footer>
 
-  <script src="script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

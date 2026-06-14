@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Vatican City</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .page-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+      min-height: 50vh;
+    }
+
+    .review-shell {
+      display: grid;
+      gap: 1.3rem;
+    }
+
+    .review-hero,
+    .review-card,
+    .review-form-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(245, 239, 229, 0.94));
+      border: 1px solid rgba(14, 12, 9, 0.08);
+      border-radius: 24px;
+      box-shadow: 0 18px 35px rgba(14, 12, 9, 0.08);
+      padding: 1.5rem;
+    }
+
+    .review-hero {
+      background:
+        linear-gradient(135deg, rgba(10, 8, 5, 0.95), rgba(33, 27, 22, 0.92)),
+        radial-gradient(circle at top right, rgba(192, 57, 43, 0.18), transparent 30%);
+      color: var(--white);
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.62rem;
+      color: var(--red);
+      margin-bottom: 0.55rem;
+    }
+
+    .review-hero .eyebrow {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .review-hero h2,
+    .review-card h3,
+    .review-form-card h3 {
+      font-family: var(--font-display);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      color: var(--dark);
+    }
+
+    .review-hero h2 {
+      color: var(--white);
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+    }
+
+    .review-hero p,
+    .review-card p,
+    .review-form-card p,
+    .review-card li,
+    .review-form-card label,
+    .review-form-card small {
+      font-family: var(--font-script);
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: #342e27;
+    }
+
+    .review-hero p,
+    .review-hero li {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.2rem;
+    }
+
+    .review-highlight {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .mini-card {
+      background: rgba(14, 12, 9, 0.04);
+      border: 1px solid rgba(14, 12, 9, 0.08);
+      border-radius: 18px;
+      padding: 1rem;
+    }
+
+    .mini-card strong {
+      display: block;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.67rem;
+      color: var(--red);
+      margin-bottom: 0.4rem;
+    }
+
+    .review-form-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(240, 235, 224, 0.96));
+    }
+
+    .review-form {
+      display: grid;
+      gap: 0.95rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.9rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .field label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #5b5247;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid rgba(14, 12, 9, 0.14);
+      border-radius: 12px;
+      padding: 0.82rem 0.9rem;
+      background: rgba(255, 255, 255, 0.9);
+      font-family: var(--font-serif);
+      font-size: 0.98rem;
+      color: var(--dark);
+    }
+
+    .field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .stars-note {
+      color: #6f665a;
+      font-size: 0.95rem;
+    }
+
+    .review-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.1rem;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--red), #8b2f25);
+      color: var(--white);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 12px 24px rgba(192, 57, 43, 0.25);
+    }
+
+    .review-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(192, 57, 43, 0.35);
+    }
+
+    .review-note {
+      border-left: 3px solid var(--red);
+      padding-left: 0.9rem;
+      font-style: italic;
+      color: #5c544a;
+    }
+
+    .review-list {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .review-item {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(245, 239, 229, 0.96));
+      border: 1px solid rgba(14, 12, 9, 0.08);
+      border-radius: 18px;
+      padding: 1rem;
+      box-shadow: 0 10px 18px rgba(14, 12, 9, 0.06);
+    }
+
+    .review-item__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 1rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .review-item__name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--dark);
+    }
+
+    .review-item__meta {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6d6559;
+    }
+
+    .review-item__rating {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--red);
+    }
+
+    .review-item__text {
+      font-family: var(--font-script);
+      line-height: 1.7;
+      color: #342e27;
+    }
+
+    .review-item__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.6rem;
+    }
+
+    .review-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(192, 57, 43, 0.08);
+      color: #5f564d;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    @media (max-width: 900px) {
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <span class="navbar__logo-main">Vatican</span>
+        <span class="navbar__logo-sub">City</span>
+      </a>
+
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="landmarks.html">Landmarks</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="review.html">Review</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="lm-header">
+    <div class="lm-header__inner">
+      <p class="lm-header__eyebrow">Vol. IV — Voices of the Faithful</p>
+      <h1 class="lm-header__title">Visitor<br /><em>Reviews</em></h1>
+      <p class="lm-header__desc">
+        Read the personal journeys, deep reflections, and inspiring impressions left by pilgrims and travelers from all
+        corners of the global community who have witnessed the Holy See.
+      </p>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <section class="review-shell">
+      <article class="review-hero">
+        <p class="eyebrow">Traveler's reflection</p>
+        <h2>Share your review on the majesty, art, and atmosphere of the Vatican</h2>
+        <p>Vatican City is not merely a tourist destination, but a place where history, art, and spirituality converge.
+          Use the form below to share your experience, from the beauty of St. Peter's Basilica to the historic aura of
+          every corner of the city.</p>
+      </article>
+
+      <section class="review-grid">
+        <article class="review-card">
+          <p class="eyebrow">Why visitors remember it</p>
+          <h3>Why was this review page created?</h3>
+          <p>This page is designed to showcase the nuance of the Vatican as a place that feels monumental: sacred,
+            artistic, and full of stories. The cards here help users understand the value of the experiences they wish
+            to share.</p>
+          <div class="review-highlight">
+            <div class="mini-card">
+              <strong>Atmosphere</strong>
+              A serene, historic atmosphere that feels truly special in every layer of its architecture.
+            </div>
+            <div class="mini-card">
+              <strong>Art &amp; Faith</strong>
+              Masterpieces, grand basilicas, and Renaissance footprints make every visit memorable.
+            </div>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <p class="eyebrow">Traveler notes</p>
+          <h3>Short reviews from visitors</h3>
+          <p>"I am impressed by the architectural detail and the tranquility in the basilica area. It feels like walking
+            through world history."</p>
+          <p class="review-note">"This small city has a huge impact—the art, faith, and symbolism feel real on every
+            side."</p>
+        </article>
+      </section>
+
+      <article class="review-form-card">
+        <p class="eyebrow">Your review</p>
+        <h3>Vatican City Review Form</h3>
+        <p>Fill out the form below to share your experience. Your review will help others understand the beauty and
+          appeal of the Vatican.</p>
+
+        <form class="review-form" id="reviewForm">
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Nama</label>
+              <input id="name" type="text" placeholder="Contoh: Darren Nicholas" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="loremipsum@email.com" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="visit">Visit Date</label>
+              <input id="visit" type="text" placeholder="Ex: June 2026" />
+            </div>
+            <div class="field">
+              <label for="rating">Rating</label>
+              <select id="rating">
+                <option>★★★★★ Extraordinary</option>
+                <option>★★★★☆ Very Good</option>
+                <option>★★★☆☆ Interesting</option>
+                <option>★★☆☆☆ Average</option>
+                <option>★☆☆☆☆ Needs Consideration</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="favorite">Main Favorite</label>
+            <input id="favorite" type="text" placeholder="Ex: Basilica of St. Peter, Sistine Chapel" />
+          </div>
+
+          <div class="field">
+            <label for="review">Your Review</label>
+            <textarea id="review"
+              placeholder="Share your experience in Vatican City: the beauty, atmosphere, highlights, or tips for other visitors."></textarea>
+          </div>
+
+          <div class="field">
+            <label for="recommend">Do you recommend this place?</label>
+            <select id="recommend">
+              <option>Yes, highly recommended</option>
+              <option>Yes, but needs more preparation</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+
+          <button class="review-button" type="submit">Send Review</button>
+        </form>
+      </article>
+
+      <article class="review-form-card">
+        <p class="eyebrow">Community reviews</p>
+        <h3>Reviews from other visitors</h3>
+        <p>The reviews you submit will be automatically saved in your browser and appear in the list below.</p>
+        <div id="reviewList" class="review-list"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+
+      <div class="footer__brand">
+        <p class="footer__brand-eyebrow">✦ Sovereign City-State ✦</p>
+        <h3 class="footer__brand-name">Vatican<br /><span>City</span></h3>
+        <p class="footer__brand-tagline">The Heart of History and Faith</p>
+      </div>
+
+      <nav class="footer__nav">
+        <div class="footer__nav-col">
+          <h4 class="footer__nav-title">Pages</h4>
+          <ul>
+            <li><a href="landmarks.html">Landmarks</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="review.html">Review</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__nav-col">
+          <h4 class="footer__nav-title">Discover</h4>
+          <ul>
+            <li><a href="landmarks.html">St. Peter's Basilica</a></li>
+            <li><a href="landmarks.html">Sistine Chapel</a></li>
+            <li><a href="landmarks.html">Vatican Museums</a></li>
+            <li><a href="landmarks.html">Vatican Gardens</a></li>
+          </ul>
+        </div>
+        <div class="footer__nav-col">
+          <h4 class="footer__nav-title">Info</h4>
+          <ul>
+            <li><a href="history.html">About Vatican City</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div>
+        <h4 class="footer__tips-title">Visit Tips</h4>
+        <ul class="footer__tips-list">
+          <li class="footer__tip">
+            <span class="footer__tip-num">01</span>
+            <div class="footer__tip-body">
+              <strong>Dress Code</strong>
+              <span>Cover shoulders &amp; knees. No sleeveless tops or shorts inside.</span>
+            </div>
+          </li>
+          <li class="footer__tip">
+            <span class="footer__tip-num">02</span>
+            <div class="footer__tip-body">
+              <strong>Opening Hours</strong>
+              <span>Basilica: daily 07:00–19:00. Museums: Mon–Sat 09:00–18:00.</span>
+            </div>
+          </li>
+          <li class="footer__tip">
+            <span class="footer__tip-num">03</span>
+            <div class="footer__tip-body">
+              <strong>Book in Advance</strong>
+              <span>Buy tickets online to skip 2–3 hour walk-in queues.</span>
+            </div>
+          </li>
+          <li class="footer__tip">
+            <span class="footer__tip-num">04</span>
+            <div class="footer__tip-body">
+              <strong>Silence &amp; Respect</strong>
+              <span>No flash photography. Keep voices low inside the Chapel.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__credits-title">Developer Credits</h4>
+        <div class="footer__team">
+          <div class="footer__member">
+            <div class="footer__member-avatar">DN</div>
+            <div>
+              <span class="footer__member-name">Darren Nicholas Heng</span>
+              <span class="footer__member-id">NRP · 2572019</span>
+            </div>
+          </div>
+          <div class="footer__member">
+            <div class="footer__member-avatar">DA</div>
+            <div>
+              <span class="footer__member-name">Daniel Arya Kristantara</span>
+              <span class="footer__member-id">NRP · 2572023</span>
+            </div>
+          </div>
+          <div class="footer__member">
+            <div class="footer__member-avatar">NW</div>
+            <div>
+              <span class="footer__member-name">Nathanael Wijaya</span>
+              <span class="footer__member-id">NRP · 2572028</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__divider"></div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 Kelompok Vatikan — Tugas Besar Web Dasar. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <script src="script.js"></script>
+  <script>
+    const defaultReviews = [
+      {
+        id: 1,
+        name: 'Anton',
+        email: 'anton@webdas25.com',
+        visit: 'Mei 2026',
+        rating: '★★★★★ Extraordinary',
+        favorite: 'Basilica of St. Peter',
+        recommend: 'Ya, sangat merekomendasikan',
+        review: 'Suasana di Vatikan terasa sangat tenang dan monumental. Saya sangat terkesan dengan detail arsitektur dan nilai sejarah yang masih terasa hidup.'
+      },
+      {
+        id: 2,
+        name: 'Luffy',
+        email: 'luffymanusiakaret@webdas25.com',
+        visit: 'April 2026',
+        rating: '★★★★☆ Very Good',
+        favorite: 'Sistine Chapel',
+        recommend: 'Ya, tetapi perlu persiapan lebih',
+        review: 'Kunjungan ini membuat saya memahami mengapa Vatikan menjadi simbol seni dan iman dunia. Persiapan tiket dan jam kunjung sangat penting.'
+      }
+    ];
+
+    const STORAGE_KEY = 'vaticanReviews';
+    let reviews = JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultReviews;
+
+    function saveReviews() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+    }
+
+    function renderReviews() {
+      const reviewList = document.getElementById('reviewList');
+
+      if (!reviews.length) {
+        reviewList.innerHTML = '<p class="review-item__text">Belum ada review yang tersimpan.</p>';
+        return;
+      }
+
+      reviewList.innerHTML = reviews
+        .map((item) => `
+                    <article class="review-item">
+                        <div class="review-item__top">
+                            <div>
+                                <div class="review-item__name">${item.name}</div>
+                                <div class="review-item__meta">${item.visit} · ${item.email}</div>
+                            </div>
+                            <div class="review-item__rating">${item.rating}</div>
+                        </div>
+                        <p class="review-item__text">${item.review}</p>
+                        <div class="review-item__tags">
+                            <span class="review-chip">Favorit: ${item.favorite}</span>
+                            <span class="review-chip">Recomendation ${item.recommend}</span>
+                        </div>
+                    </article>
+                `)
+        .join('');
+    }
+
+    document.getElementById('reviewForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const visit = document.getElementById('visit').value.trim();
+      const rating = document.getElementById('rating').value;
+      const favorite = document.getElementById('favorite').value.trim();
+      const reviewText = document.getElementById('review').value.trim();
+      const recommend = document.getElementById('recommend').value;
+
+      if (!name || !email || !visit || !favorite || !reviewText) {
+        alert('Nama, email, waktu kunjungan, favorit utama, dan ulasan tidak boleh kosong.');
+        return;
+      }
+
+      reviews.unshift({
+        id: Date.now(),
+        name,
+        email,
+        visit,
+        rating,
+        favorite,
+        recommend,
+        review: reviewText
+      });
+
+      saveReviews();
+      renderReviews();
+      this.reset();
+    });
+
+    renderReviews();
+  </script>
+</body>
+
+</html>

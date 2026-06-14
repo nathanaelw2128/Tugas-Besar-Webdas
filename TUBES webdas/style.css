@@ -234,6 +234,62 @@ body {
   }
 }
 
+/* CSS buat Header */
+.lm-header {
+  padding: 120px 2rem 4rem;
+  background: #1a1510;
+  text-align: center;
+  position: relative;
+}
+
+.lm-header__bg-text {
+  display: none;
+}
+
+.lm-header__inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.lm-header__eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red, #c0392b);
+  margin-bottom: 1rem;
+}
+
+.lm-header__title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 3.5rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--white, #ffffff);
+  margin-bottom: 1rem;
+}
+
+.lm-header__title em {
+  color: var(--red, #c0392b);
+  font-style: normal;
+}
+
+.lm-header__desc {
+  font-family: var(--font-serif), serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+.lm-header__count {
+  margin-top: 1.5rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
 
 /* CSS buat Footer*/
 .footer {
