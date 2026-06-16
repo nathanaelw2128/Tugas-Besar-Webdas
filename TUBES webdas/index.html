@@ -55,35 +55,6 @@
           rgba(10, 8, 5, 0.8) 100%);
     }
 
-    /* Foto kecil di tengah hero */
-    .hero__inset {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero__inset img {
-      width: 150px;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      border-radius: 4px;
-      box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
-    }
-
-    .hero__inset-caption {
-      font-family: var(--font-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: rgba(255, 255, 255, 0.5);
-      text-transform: uppercase;
-    }
-
     /* Teks utama di hero */
     .hero__content {
       position: relative;
@@ -94,15 +65,6 @@
       text-align: center;
       width: 100%;
       padding: 0 1rem;
-    }
-
-    .hero__eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: rgba(255, 255, 255, 0.55);
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
     }
 
     .hero__title {
@@ -119,17 +81,12 @@
     .hero__title-top {
       font-size: 7rem;
       letter-spacing: -0.01em;
-      position: relative;
-      z-index: 5;
       animation: fadeDown 0.9s ease both;
     }
 
     .hero__title-bottom {
       font-size: 7rem;
       letter-spacing: -0.01em;
-      position: relative;
-      z-index: 1;
-      margin-top: 10rem;
       animation: fadeUp 0.9s 0.15s ease both;
     }
 
@@ -140,16 +97,6 @@
       color: var(--white);
       margin-top: 0.6rem;
       animation: fadeIn 1s 0.4s ease both;
-    }
-
-    .hero__anno {
-      font-family: var(--font-mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.25em;
-      color: rgba(255, 255, 255, 0.4);
-      text-transform: uppercase;
-      margin-top: 0.3rem;
-      animation: fadeIn 1s 0.55s ease both;
     }
 
     .hero__cta {
@@ -170,20 +117,6 @@
     .hero__cta:hover {
       background: var(--white);
       color: var(--dark);
-    }
-
-    .hero__scroll-hint {
-      position: absolute;
-      bottom: 1.2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 4;
-      font-family: var(--font-mono);
-      font-size: 0.5rem;
-      letter-spacing: 0.3em;
-      color: rgba(255, 255, 255, 0.35);
-      text-transform: uppercase;
-      animation: pulse 2s infinite;
     }
 
     /*CSS Bagian Quick Facts*/
@@ -430,17 +363,9 @@
         justify-content: flex-end;
       }
 
-      .hero__inset img {
-        width: 38vw;
-      }
-
       .hero__title-top,
       .hero__title-bottom {
         font-size: 4rem;
-      }
-
-      .hero__title-bottom {
-        margin-top: 6rem;
       }
     }
   </style>
@@ -473,23 +398,15 @@
       <img src="assets/Hero_IMG.jpg" alt="Vatican City aerial view" class="hero__photo" />
       <div class="hero__overlay"></div>
     </div>
-    <div class="hero__inset">
-      <img src="assets/Interior of Vatican dome.png" alt="St Peter's Basilica interior dome" />
-      <span class="hero__inset-caption">Fig. 1 — Pantheon Vaticanum</span>
-    </div>
 
     <div class="hero__content">
-      <p class="hero__eyebrow">✦ Sovereign City-State · Est. MCMXXIX ✦</p>
       <h1 class="hero__title">
         <span class="hero__title-top">Vatican</span>
         <span class="hero__title-bottom">City</span>
       </h1>
       <p class="hero__subtitle">The Heart of History and Faith</p>
-      <p class="hero__anno">Anno Domini</p>
       <a href="#facts" class="hero__cta">Explore Now</a>
     </div>
-
-    <div class="hero__scroll-hint">SCROLL</div>
   </section>
   <section class="facts" id="facts">
     <div class="facts__inner">
@@ -519,7 +436,7 @@
 
       <article class="card" style="--accent:#c0392b;">
         <div class="card__arch">
-          <img src="assets/Placeholder_1.jpg" alt="Vatican interior" />
+          <img src="assets/Quick_Facts/size_img.jpg" alt="Vatican interior" />
           <div class="card__img-overlay"></div>
           <div class="card__stat">~0.49<span class="card__unit">km²</span></div>
         </div>
@@ -537,7 +454,7 @@
 
       <article class="card" style="--accent:#b8860b;">
         <div class="card__arch">
-          <img src="assets/Placeholder_2.jpg" alt="Vatican dome interior" />
+          <img src="assets/Quick_Facts/population_img.jpg" />
           <div class="card__img-overlay"></div>
           <div class="card__stat">~800<span class="card__unit">Citizens</span></div>
         </div>
@@ -555,7 +472,7 @@
 
       <article class="card" style="--accent:#2980b9;">
         <div class="card__arch">
-          <img src="assets/Placeholder_3.jpg" alt="Vatican sky" />
+          <img src="assets/Quick_Facts/latin_img.jpg">
           <div class="card__img-overlay"></div>
           <div class="card__stat card__stat--script">Latin<span class="card__unit">&amp; Italian</span></div>
         </div>
@@ -573,7 +490,7 @@
 
       <article class="card" style="--accent:#7b68ee;">
         <div class="card__arch">
-          <img src="assets/Placeholder_4.jpg" alt="Vatican art ceiling" />
+          <img src="assets/Quick_Facts/money_img.jpg" />
           <div class="card__img-overlay"></div>
           <div class="card__stat card__stat--script card__stat--purple">Euro<span class="card__unit">€</span></div>
         </div>

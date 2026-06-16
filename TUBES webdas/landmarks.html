@@ -706,176 +706,173 @@
         ]
       },
     ];
-
-    // State halaman
-    let activeFilter = 'all';
-    let activeSortKey = 'default';
-    let activeDetailId = null;
-
-    // Ambil elemen-elemen yang dibutuhkan dari HTML
     const grid = document.getElementById('landmarkGrid');
     const emptyState = document.getElementById('emptyState');
-    const countEl = document.getElementById('landmarkCount');
-    const filterTabs = document.getElementById('filterTabs');
-    const sortSelect = document.getElementById('sortSelect');
+    const count_land = document.getElementById('landmarkCount')
     const overlay = document.getElementById('detailOverlay');
-    const panel = document.getElementById('detailPanel');
 
-    // Fungsi untuk format angka menjadi 2 digit (1 → "01")
-    function formatIndex(n) {
-      return String(n).padStart(2, '0');
-    }
+    let activeFilter = "all" // status filter default 
+    let activeSortKey = "default"
 
-    // Fungsi untuk menampilkan kartu ke dalam grid
     function renderGrid(data) {
-      grid.innerHTML = '';
-
-      // Tampilkan pesan kosong jika tidak ada data
+      grid.innerHTML = ''
       if (data.length === 0) {
-        emptyState.style.display = 'block';
-        countEl.textContent = 'No landmarks found';
+        emptyState.style.display = "flex";
         return;
       }
-
-      emptyState.style.display = 'none';
-      countEl.textContent = 'Showing ' + data.length + ' landmark' + (data.length !== 1 ? 's' : '');
-
-      // Looping — buat kartu untuk setiap landmark
+      emptyState.style.display = "none";
+      count_land.innerHTML = `Showing ${data.length} landmarks`
       for (let i = 0; i < data.length; i++) {
-        const lm = data[i];
-        const delay = i * 0.07;
-
-        const card = document.createElement('article');
+        let lm = data[i]
+        // bikin element kartu utama
+        let card = document.createElement('article')
         card.className = 'lm-card';
-        card.style.animationDelay = delay + 's';
         card.dataset.id = lm.id;
 
-        card.innerHTML =
-          '<div class="lm-card__img-wrap">' +
-          '<img src="' + lm.img + '" alt="' + lm.name + '" loading="lazy" />' +
-          '<div class="lm-card__img-overlay"></div>' +
-          '<span class="lm-card__era-badge">' + lm.era + '</span>' +
-          '<div class="lm-card__index" aria-hidden="true">' + formatIndex(i + 1) + '</div>' +
-          '</div>' +
-          '<div class="lm-card__body">' +
-          '<p class="lm-card__category">' + lm.category + '</p>' +
-          '<h2 class="lm-card__title">' + lm.name + '</h2>' +
-          '<p class="lm-card__desc">' + lm.shortDesc + '</p>' +
-          '</div>' +
-          '<div class="lm-card__foot">' +
-          '<span class="lm-card__year">Est. ' + lm.year + ' AD</span>' +
-          '<span class="lm-card__arrow">→ Explore</span>' +
-          '</div>';
+        // bikin element foto dan teks era
+        let img_card = document.createElement('div');
+        img_card.className = 'lm-card__img-wrap';
+        let img = document.createElement('img');
+        img.src = lm.img;
+        img.alt = lm.name;
+        let text_con = document.createElement('span');
+        text_con.className = 'lm-card__era-badge';
+        text_con.textContent = lm.era;
+        img_card.append(img, text_con);
 
-        // Klik kartu → buka panel detail
-        card.addEventListener('click', function () {
+        // bikin element card body
+        let card_body = document.createElement('div');
+        card_body.className = 'lm-card__body';
+        let category = document.createElement('p');
+        category.className = 'lm-card__category';
+        category.textContent = lm.category;
+        let title = document.createElement('h2');
+        title.className = 'lm-card__title';
+        title.textContent = lm.name;
+        let desc = document.createElement('p');
+        desc.className = 'lm-card__desc';
+        desc.textContent = lm.shortDesc;
+        card_body.append(category, title, desc);
+
+        // bikin element card footer
+        let card_foot = document.createElement('div');
+        card_foot.className = 'lm-card__foot';
+        let year = document.createElement('span');
+        year.className = 'lm-card__year';
+        year.textContent = lm.year;
+        let arrow = document.createElement('span');
+        arrow.className = 'lm-card__arrow';
+        arrow.textContent = '→ Explore'
+        card_foot.append(year, arrow);
+
+
+        card.append(img_card, card_body, card_foot); // append semua komponen ke card utama
+        card.addEventListener('click', () => {
           openDetail(lm.id);
         });
-
-        grid.appendChild(card);
-      }
+        grid.append(card);
+      };
     }
-
-    // Fungsi untuk untuk filter dan sort
     function applyFilterSort() {
-      // Filter berdasarkan kategori yang dipilih
-      let result = LANDMARKS.filter(function (lm) {
-        if (activeFilter === 'all') return true;
-        return lm.category === activeFilter;
+      let filtered_lm = LANDMARKS.filter(function (lm) {
+        if (activeFilter === 'all') {
+          return true;
+        }
+        return lm.category === activeFilter
       });
 
-      // Sort berdasarkan pilihan dropdown
       if (activeSortKey === 'name-asc') {
-        result = result.sort(function (a, b) { return a.name.localeCompare(b.name); });
+        filtered_lm.sort(function (a, b) {
+          return a.name.localeCompare(b.name);
+        });
       } else if (activeSortKey === 'name-desc') {
-        result = result.sort(function (a, b) { return b.name.localeCompare(a.name); });
+        filtered_lm.sort(function (a, b) {
+          return b.name.localeCompare(a.name);
+        });
       } else if (activeSortKey === 'year-asc') {
-        result = result.sort(function (a, b) { return a.year - b.year; });
+        filtered_lm.sort(function (a, b) {
+          return a.year - b.year;
+        });
       } else if (activeSortKey === 'year-desc') {
-        result = result.sort(function (a, b) { return b.year - a.year; });
-      }
+        filtered_lm.sort(function (a, b) {
+          return b.year - a.year;
+        });
 
-      renderGrid(result);
+      };
+      renderGrid(filtered_lm);
     }
-
-    // Fungsi untuk membuka panel detail landmark
     function openDetail(id) {
-      const lm = LANDMARKS.find(function (l) { return l.id === id; });
-      if (!lm) return;
+      const panel_detail = document.getElementById('detailPanel');
+      const found = LANDMARKS.find(function (lm) {
+        return lm.id === id; // cari kartu yang di klik dari id
+      })
+      if (!found) {
+        return; // kalo data tidak ditemukan
+      };
 
-      activeDetailId = id;
-
-      // Looping — buat daftar fakta dari array lm.facts
-      let factsHTML = '';
-      for (let f = 0; f < lm.facts.length; f++) {
-        factsHTML +=
-          '<li class="lm-detail__fact">' +
-          '<span class="lm-detail__fact-key">' + lm.facts[f].key + '</span>' +
-          '<span class="lm-detail__fact-val">' + lm.facts[f].val + '</span>' +
-          '</li>';
-      }
-
-      panel.innerHTML =
-        '<div class="lm-detail__img">' +
-        '<img src="' + lm.img + '" alt="' + lm.name + '" />' +
-        '<div class="lm-detail__img-overlay"></div>' +
-        '</div>' +
-        '<div class="lm-detail__content">' +
-        '<button class="lm-detail__close" id="detailClose" aria-label="Close detail panel">✕ Close</button>' +
-        '<p class="lm-detail__eyebrow">' + lm.era + ' · ' + lm.year + ' AD</p>' +
-        '<h2 class="lm-detail__title">' + lm.name + '</h2>' +
-        '<p class="lm-detail__body">' + lm.fullDesc + '</p>' +
-        '<ul class="lm-detail__facts">' + factsHTML + '</ul>' +
-        '</div>';
-
-      overlay.classList.add('open');
+      let fact_cards = '';
+      for (let i = 0; i < found.facts.length; i++) { // looping buat bikin list facts
+        let fact_data = found.facts[i]
+        fact_cards += `
+          <li class="lm-detail__fact">
+          <span class="lm-detail__fact-key">${fact_data.key}</span>
+          <span class="lm-detail__fact-val">${fact_data.val}</span>
+          </li>
+          `;
+      };
+      panel_detail.innerHTML = ` 
+        <div class="lm-detail__img">
+          <img src="${found.img}" alt="${found.name}" />
+          <div class="lm-detail__img-overlay"></div>
+        </div>
+        <div class="lm-detail__content">
+          <button class="lm-detail__close" id="detailClose" aria-label="Close detail panel">✕ Close</button>
+          <p class="lm-detail__eyebrow">${found.era} · ${found.year} AD</p>
+          <h2 class="lm-detail__title">${found.name}</h2>
+          <p class="lm-detail__body">${found.fullDesc}</p>
+          <ul class="lm-detail__facts">
+            ${fact_cards}
+          </ul>
+        </div>
+      `; // digabung ke panel details
+      overlay.classList.add('open'); // kartu diberi class open biar terlihat
       document.body.style.overflow = 'hidden';
 
-      // Pasang event listener ke tombol close yang baru dibuat
       document.getElementById('detailClose').addEventListener('click', closeDetail);
-    }
+    };
 
-    // Fungsi untuk menutup panel detail
     function closeDetail() {
       overlay.classList.remove('open');
       document.body.style.overflow = '';
-      activeDetailId = null;
-    }
+    };
 
-    // Event: klik tombol filter kategori
-    filterTabs.addEventListener('click', function (e) {
-      const tab = e.target.closest('.lm-filter-tab');
-      if (!tab) return;
+    const filtered_tabs = document.getElementById('filterTabs'); // ngambi parrent div buuton filter
+    filtered_tabs.addEventListener('click', function (event) {
+      const button_click = event.target.closest('.lm-filter-tab');
+      if (!button_click) { // ngecek kalo yang diklik itu tombol ato bukan
+        return
+      };
+      const activeTabButtons = document.querySelectorAll('.lm-filter-tab');
+      activeTabButtons.forEach(function (tab) { // ngilangin css activate tombol lain
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
+      // tambahin css activate tombol yang diklik
+      button_click.classList.add('active');
+      button_click.setAttribute('aria-selected', 'true')
 
-      if (tab.dataset.filter === activeFilter) return;
+      activeFilter = button_click.dataset.filter;   // ambil filter yang dipilih 
+      applyFilterSort()
 
-      activeFilter = tab.dataset.filter;
-
-      // Update tampilan tab aktif
-      const allTabs = filterTabs.querySelectorAll('.lm-filter-tab');
-      for (let t = 0; t < allTabs.length; t++) {
-        allTabs[t].classList.remove('active');
-        allTabs[t].setAttribute('aria-selected', 'false');
-      }
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-
-      applyFilterSort();
     });
 
-    // Event: ganti pilihan sort
-    sortSelect.addEventListener('change', function (e) {
-      activeSortKey = e.target.value;
-      applyFilterSort();
+    const sort_select = document.getElementById('sortSelect'); // ngambi parrent div button filter
+    sort_select.addEventListener('change', function (event) {
+      activeSortKey = event.target.value;
+      applyFilterSort()
     });
 
-    // Klik area gelap di luar panel → tutup detail
-    overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) closeDetail();
-    });
-    // Jalankan pertama kali saat halaman dimuat
-    applyFilterSort();
-
+    renderGrid(LANDMARKS);
   </script>
 
 </body>
