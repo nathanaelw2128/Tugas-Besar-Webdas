@@ -1,4 +1,3 @@
-// script.js — Vatican City
 
 // Navbar berubah tampilan saat user scroll ke bawah
 const navbar = document.getElementById('navbar');

@@ -171,7 +171,6 @@
       font-family: var(--font-display), sans-serif;
       font-size: 1.35rem;
       color: #2c3e50;
-      /* Warna gelap bersih */
       text-transform: uppercase;
       margin-bottom: 0.5rem;
       line-height: 1.2;
@@ -571,7 +570,6 @@
     const LANDMARKS = [
       {
         id: 1,
-        slug: 'st-peters-basilica',
         name: "St. Peter's Basilica",
         category: 'basilica',
         era: 'Renaissance',
@@ -588,7 +586,6 @@
       },
       {
         id: 2,
-        slug: 'sistine-chapel',
         name: "Sistine Chapel",
         category: 'chapel',
         era: 'Renaissance',
@@ -605,7 +602,6 @@
       },
       {
         id: 3,
-        slug: 'vatican-museums',
         name: "Vatican Museums",
         category: 'museum',
         era: 'Papal',
@@ -622,7 +618,6 @@
       },
       {
         id: 4,
-        slug: 'st-peters-square',
         name: "St. Peter's Square",
         category: 'other',
         era: 'Baroque',
@@ -639,7 +634,6 @@
       },
       {
         id: 5,
-        slug: 'apostolic-palace',
         name: "Apostolic Palace",
         category: 'other',
         era: 'Medieval',
@@ -656,7 +650,6 @@
       },
       {
         id: 6,
-        slug: 'vatican-gardens',
         name: "Vatican Gardens",
         category: 'garden',
         era: 'Renaissance',
@@ -673,7 +666,6 @@
       },
       {
         id: 7,
-        slug: 'castel-sant-angelo',
         name: "Castel Sant'Angelo",
         category: 'other',
         era: 'Ancient',
@@ -690,7 +682,6 @@
       },
       {
         id: 8,
-        slug: 'paul-vi-audience-hall',
         name: "Paul VI Audience Hall",
         category: 'other',
         era: 'Modern',
@@ -712,7 +703,7 @@
     const overlay = document.getElementById('detailOverlay');
 
     let activeFilter = "all" // status filter default 
-    let activeSortKey = "default"
+    let activeSortKey = "default" // status sort default 
 
     function renderGrid(data) {
       grid.innerHTML = ''
@@ -774,6 +765,7 @@
       };
     }
     function applyFilterSort() {
+      // kode blok filter
       let filtered_lm = LANDMARKS.filter(function (lm) {
         if (activeFilter === 'all') {
           return true;
@@ -781,6 +773,7 @@
         return lm.category === activeFilter
       });
 
+      // kode blok sort
       if (activeSortKey === 'name-asc') {
         filtered_lm.sort(function (a, b) {
           return a.name.localeCompare(b.name);
